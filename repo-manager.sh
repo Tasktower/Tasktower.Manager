@@ -1,6 +1,6 @@
 # set -x
 baseDir=$(basename "$PWD")
-repositories=( "Tasktower.Webutils" "Tasktower.UserService" )
+repositories=( "Tasktower.Webutils" "Tasktower.UserService" "Tasktower.NginxGateway" )
 HELP_FLAG=false
 BRANCH=master
 GIT_COMMAND=" status "

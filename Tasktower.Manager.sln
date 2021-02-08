@@ -25,13 +25,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tasktower.Webutils", "..\Ta
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Lib", "Lib", "{B73FA055-1672-4CA4-961A-35DC63ED2862}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Manager", "_Manager", "{7FABC787-FB40-46CB-A04E-FBF005D5D591}"
-	ProjectSection(SolutionItems) = preProject
-		README.md = README.md
-		repo-manager.sh = repo-manager.sh
-	EndProjectSection
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{A084B6BF-8F50-4D05-BD7F-2B4BF88EDBB8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tasktower.Manager", "Tasktower.Manager.csproj", "{3EB8D491-F80F-4199-BACC-2CFD806FE5A6}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tasktower.NginxGateway", "..\Tasktower.NginxGateway\Tasktower.NginxGateway.csproj", "{18538620-08CE-4E34-91A9-62645CEDC756}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Other", "Other", "{8290A3E6-01DA-4141-935F-91E9212BF65B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NginxGateway", "NginxGateway", "{EF0C9A16-60DC-41FF-8D56-E152E5FF7D2D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -59,6 +61,14 @@ Global
 		{8CDAC239-E7AB-40A3-A8AC-BF322DE883C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8CDAC239-E7AB-40A3-A8AC-BF322DE883C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8CDAC239-E7AB-40A3-A8AC-BF322DE883C6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3EB8D491-F80F-4199-BACC-2CFD806FE5A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3EB8D491-F80F-4199-BACC-2CFD806FE5A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3EB8D491-F80F-4199-BACC-2CFD806FE5A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3EB8D491-F80F-4199-BACC-2CFD806FE5A6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{18538620-08CE-4E34-91A9-62645CEDC756}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{18538620-08CE-4E34-91A9-62645CEDC756}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{18538620-08CE-4E34-91A9-62645CEDC756}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{18538620-08CE-4E34-91A9-62645CEDC756}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -74,6 +84,8 @@ Global
 		{9D6ED40A-0820-4B8E-BB8C-CD734EFCACFC} = {B73FA055-1672-4CA4-961A-35DC63ED2862}
 		{6FBD690C-F9D8-48CA-AC8B-4DA3360DF845} = {9D6ED40A-0820-4B8E-BB8C-CD734EFCACFC}
 		{8CDAC239-E7AB-40A3-A8AC-BF322DE883C6} = {9D6ED40A-0820-4B8E-BB8C-CD734EFCACFC}
+		{18538620-08CE-4E34-91A9-62645CEDC756} = {EF0C9A16-60DC-41FF-8D56-E152E5FF7D2D}
+		{EF0C9A16-60DC-41FF-8D56-E152E5FF7D2D} = {8290A3E6-01DA-4141-935F-91E9212BF65B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E8D83CC4-5896-4B85-B28A-E8D9ADF4C0BE}

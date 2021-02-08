@@ -7,9 +7,7 @@ services:
       - "1433:1433"
     environment:
         - ACCEPT_EULA=Y
-        - SA_PASSWORD=password123
-    networks:
-      - tasktower-backend
+        - SA_PASSWORD=P@ssword123
   local-redis:
     container_name: "tasktower-local-redis"
     image: bitnami/redis:6.0.9
@@ -17,8 +15,6 @@ services:
         - "6379:6379"
     environment:
         - REDIS_PASSWORD=password123
-    networks:
-      - tasktower-backend
   shared-redis:
     container_name: "tasktower-shared-redis"
     image: bitnami/redis:6.0.9
@@ -26,18 +22,10 @@ services:
         - "6378:6379"
     environment:
         - REDIS_PASSWORD=password123
-    networks:
-      - tasktower-backend
-#  tasktower-nginx-gateway:
-#    container_name: "tasktower-nginx-gateway"
-#    build: ../tasktower-nginx-gateway
-#    depends_on: 
-#      - tasktower-auth-service
-#    ports:
-#      - "443:443"
-#    networks:
-#      - tasktower-backend
-
-networks:
-  tasktower-backend:
-    driver: bridge
+  tasktower-nginx-gateway:
+    container_name: "tasktower-nginx-gateway"
+    build: dockerfiles/NginxGateway
+    depends_on:
+        - db-mssql
+    ports:
+      - "443:443"
