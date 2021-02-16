@@ -1,31 +1,51 @@
 version: "3.9"
 services:
-  db-mssql:
-    container_name: "tasktower-db-mssql"
+  tasktower-mssql-db:
+    container_name: "tasktower-mssql-db"
     image: mcr.microsoft.com/mssql/server:2017-latest
     ports:
       - "1433:1433"
     environment:
-        - ACCEPT_EULA=Y
-        - SA_PASSWORD=P@ssword123
-  local-redis:
-    container_name: "tasktower-local-redis"
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=P@ssword123
+    networks:
+      - tasktower
+  tasktower-redis:
+    container_name: "tasktower-redis"
     image: bitnami/redis:6.0.9
     ports:
-        - "6379:6379"
+      - "6379:6379"
     environment:
-        - REDIS_PASSWORD=password123
-  shared-redis:
-    container_name: "tasktower-shared-redis"
-    image: bitnami/redis:6.0.9
+      - REDIS_PASSWORD=password123
+    networks:
+      - tasktower
+  tasktower-keycloak:
+    container_name: "tasktower-keycloak"
+    image: jboss/keycloak:12.0.2
     ports:
-        - "6378:6379"
+      - "8081:8080"
+    networks:
+      - tasktower
     environment:
-        - REDIS_PASSWORD=password123
+      - KEYCLOAK_USER=admin
+      - KEYCLOAK_PASSWORD=admin
+      - DB_DATABASE=keycloak
+      - DB_VENDOR=mssql
+      - DB_ADDR=tasktower-mssql-db
+      - DB_PORT=1433
+      - DB_USER=SA
+      - DB_PASSWORD=P@ssword123
+    depends_on:
+      - tasktower-mssql-db
   tasktower-nginx-gateway:
     container_name: "tasktower-nginx-gateway"
     build: dockerfiles/NginxGateway
     depends_on:
-        - db-mssql
+      - tasktower-mssql-db
     ports:
       - "443:443"
+    networks:
+      - tasktower
+networks:
+  tasktower:
+    driver: bridge
