@@ -1,6 +1,12 @@
 # set -x
 baseDir=$(basename "$PWD")
-repositories=( "Tasktower.Webtools" "Tasktower.UserService" "Tasktower.NginxGateway" "Tasktower.Migrator" )
+repositories=( \
+    "Tasktower.Webtools" \
+    "Tasktower.UserService" \
+    "Tasktower.NginxGateway" \
+    "Tasktower.Migrator" \
+    "Tasktower.BoardService" \
+    "Tasktower.UIService" )
 HELP_FLAG=false
 BRANCH=master
 GIT_COMMAND=" status "
