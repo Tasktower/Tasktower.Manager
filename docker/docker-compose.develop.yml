@@ -32,7 +32,7 @@ services:
     depends_on:
       - tasktower-ui-service
     ports:
-      - "443:443"
+      - "8080:443"
     networks:
       - tasktower
 networks:
