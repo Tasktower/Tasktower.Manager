@@ -53,7 +53,11 @@ Next is to build your docker images and run them locally.
 To go into the docker directory, run `cd docker`.
 
 To build all of your custom docker images, you first need all of your 
-projects installed and set up (refer to .you need to run:
+projects installed and set up. 
+
+Refer to *repo-manager.sh* in the previous section for more details.
+
+You need to run:
 ```
 sh ./build.sh
 ```
