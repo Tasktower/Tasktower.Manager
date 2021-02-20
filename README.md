@@ -57,7 +57,7 @@ projects installed and set up.
 
 Refer to *repo-manager.sh* in the previous section for more details.
 
-You need to run:
+To start building all of your docker images:
 ```
 sh ./build.sh
 ```
