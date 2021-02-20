@@ -27,16 +27,20 @@ to all projects at once. This makes it easy to keep all microservices
 up to date. To keep all projects up to date with the master branch,
 run:
 ```
-sh repo-manager.sh -c " checkout master " # this checks out all projects to the master branch
-sh repo-manager.sh -c " pull origin master " # this pulls all projects from the master branch
+# this checks out all projects to the master branch
+sh repo-manager.sh -c " checkout master "
+# this pulls all projects from the master branch
+sh repo-manager.sh -c " pull origin master "
 ```
 
 You can achieve the same for a specific project.
 For example we will use *Tasktower.Migrator*.
 
 ```
-sh repo-manager.sh -r Tasktower.Migrator -c " checkout master " # this checks out Tasktower.Migrator  to the master branch
-sh repo-manager.sh -r Tasktower.Migrator  -c " pull origin master " # this pulls from the master branch
+# this checks out Tasktower.Migrator  to the master branch
+sh repo-manager.sh -r Tasktower.Migrator -c " checkout master "
+# this pulls from the master branch
+sh repo-manager.sh -r Tasktower.Migrator  -c " pull origin master "
 ```
 This appliess to all other git commands as well as the -c option allows you to pass any git command between quotes.
 
