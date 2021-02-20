@@ -1,11 +1,12 @@
 ﻿FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
 RUN curl --silent --location https://deb.nodesource.com/setup_14.x | bash -
 RUN apt-get install --yes nodejs
-RUN git clone https://github.com/Tasktower/Tasktower.Webtools
-RUN git clone https://github.com/Tasktower/Tasktower.UIService
-WORKDIR  /Tasktower.UIService/src/Tasktower.UIService/ClientApp
+COPY Tasktower.Webtools Tasktower.Webtools
+COPY Tasktower.UIService Tasktower.UIService
+WORKDIR  /Tasktower.UIService/Tasktower.UIService/ClientApp
+RUN rm -rf node_modules build
 RUN npm install
-WORKDIR  /Tasktower.UIService/src/Tasktower.UIService
+WORKDIR  /Tasktower.UIService/Tasktower.UIService
 RUN dotnet restore "Tasktower.UIService.csproj"
 RUN dotnet publish "Tasktower.UIService.csproj" -c release -o /DockerOutput/Website --no-restore
 FROM mcr.microsoft.com/dotnet/aspnet:5.0

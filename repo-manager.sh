@@ -3,7 +3,7 @@ baseDir=$(basename "$PWD")
 repositories=( \
     "Tasktower.Webtools" \
     "Tasktower.UserService" \
-    "Tasktower.NginxGateway" \
+    "Tasktower.OcelotAPIGateway" \
     "Tasktower.Migrator" \
     "Tasktower.BoardService" \
     "Tasktower.UIService" )
@@ -24,17 +24,17 @@ help_and_exit()
 
 manageRepositories() 
 {
-    echo "__________ MANAGING UP REPOSITORIES __________"
+    echo "__________ MANAGING REPOSITORIES __________"
     cd ../
     for repo in ${repositories[@]}; do
-        echo "__________Seting up ${repo}__________"
+        echo "__________Working on ${repo}__________"
         [ ! -d ${repo} ] && git clone https://github.com/Tasktower/${repo} 
         cd ./${repo}
         git ${GIT_COMMAND}   
         cd ../
     done
     cd ${baseDir}
-    echo "__________ Finish managing up repositories __________"
+    echo "__________ Finish working on repositories __________"
 }
 
 while getopts r:c:b:h flag; do
@@ -51,7 +51,7 @@ while getopts r:c:b:h flag; do
         r)
             if [[ " ${repositories[@]} " =~ " $OPTARG " ]]
             then
-                echo "repository [$OPTARG] chosem"
+                echo "repository [$OPTARG] chosen"
             else
                 echo "ERROR: repository [$OPTARG] not used"
                 exit
