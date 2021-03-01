@@ -7,8 +7,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Lib", "Lib", "{B73FA055-167
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tasktower.Manager", "Tasktower.Manager.csproj", "{3EB8D491-F80F-4199-BACC-2CFD806FE5A6}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tasktower.Migrator", "..\Tasktower.Migrator\Tasktower.Migrator.csproj", "{BCF19DC0-0C32-445B-9A02-E319D540B989}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tasktower.Webtools", "..\Tasktower.Webtools\Tasktower.Webtools\Tasktower.Webtools.csproj", "{112A52FE-54F9-4056-9213-993C32EDB500}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tasktower.Webtools.Test", "..\Tasktower.Webtools\Tasktower.Webtools.Test\Tasktower.Webtools.Test.csproj", "{FCC2781B-E791-48F0-AD07-3598DB8047D5}"
@@ -23,6 +21,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tasktower.OcelotAPIGateway"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tasktower.UIService", "..\Tasktower.UIService\Tasktower.UIService\Tasktower.UIService.csproj", "{B8F69038-1772-4B5A-B751-B9A8C1B51F14}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tasktower.Migrator", "..\Tasktower.Migrator\Tasktower.Migrator\Tasktower.Migrator.csproj", "{515EFA94-CF67-4252-8B84-D69E88474BFD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,10 +33,6 @@ Global
 		{3EB8D491-F80F-4199-BACC-2CFD806FE5A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3EB8D491-F80F-4199-BACC-2CFD806FE5A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3EB8D491-F80F-4199-BACC-2CFD806FE5A6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BCF19DC0-0C32-445B-9A02-E319D540B989}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BCF19DC0-0C32-445B-9A02-E319D540B989}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BCF19DC0-0C32-445B-9A02-E319D540B989}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BCF19DC0-0C32-445B-9A02-E319D540B989}.Release|Any CPU.Build.0 = Release|Any CPU
 		{112A52FE-54F9-4056-9213-993C32EDB500}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{112A52FE-54F9-4056-9213-993C32EDB500}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{112A52FE-54F9-4056-9213-993C32EDB500}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -61,18 +57,22 @@ Global
 		{B8F69038-1772-4B5A-B751-B9A8C1B51F14}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B8F69038-1772-4B5A-B751-B9A8C1B51F14}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B8F69038-1772-4B5A-B751-B9A8C1B51F14}.Release|Any CPU.Build.0 = Release|Any CPU
+		{515EFA94-CF67-4252-8B84-D69E88474BFD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{515EFA94-CF67-4252-8B84-D69E88474BFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{515EFA94-CF67-4252-8B84-D69E88474BFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{515EFA94-CF67-4252-8B84-D69E88474BFD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{BCF19DC0-0C32-445B-9A02-E319D540B989} = {03D63DF5-3EB6-4CBF-892A-8DC1B5A41750}
 		{112A52FE-54F9-4056-9213-993C32EDB500} = {B73FA055-1672-4CA4-961A-35DC63ED2862}
 		{FCC2781B-E791-48F0-AD07-3598DB8047D5} = {B73FA055-1672-4CA4-961A-35DC63ED2862}
 		{04DF1A53-A95E-4449-8CF0-8786C716061C} = {03D63DF5-3EB6-4CBF-892A-8DC1B5A41750}
 		{0C5C15D0-535F-497A-81F2-8839A550B021} = {03D63DF5-3EB6-4CBF-892A-8DC1B5A41750}
 		{C980A472-4598-4CFD-A2BF-32B76D05C7A5} = {03D63DF5-3EB6-4CBF-892A-8DC1B5A41750}
 		{B8F69038-1772-4B5A-B751-B9A8C1B51F14} = {03D63DF5-3EB6-4CBF-892A-8DC1B5A41750}
+		{515EFA94-CF67-4252-8B84-D69E88474BFD} = {03D63DF5-3EB6-4CBF-892A-8DC1B5A41750}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E8D83CC4-5896-4B85-B28A-E8D9ADF4C0BE}

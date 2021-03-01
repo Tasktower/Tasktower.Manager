@@ -50,7 +50,7 @@ pass to `sh repo-manager.sh`, run `sh repo-manager.sh -h`.
 ### 2. Manage container deployments
 
 Next is to build your docker images and run them locally. 
-To go into the docker directory, run `cd docker`.
+To go into the docker directory, run `cd deploy`.
 
 To build all of your custom docker images, you first need all of your 
 projects installed and set up. 

@@ -14,11 +14,12 @@ do
     echo "----------------------------------------------------------------------"
     echo "Building $servicename"
     echo "----------------------------------------------------------------------"
+    cd Tasktower.$servicename/Tasktower.$servicename
     docker build \
         --no-cache \
-        -f ./Tasktower.Manager/docker/dockerfiles/$servicename/Dockerfile  \
         -t "tasktower-${servicename,,}" \
         .
+    cd ../../
 done
-cd Tasktower.Manager/docker
+cd Tasktower.Manager/deploy
 set -- $args
