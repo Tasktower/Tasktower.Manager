@@ -26,8 +26,6 @@ services:
       - "8082:80"
     environment:
       - ASPNETCORE_ENVIRONMENT=development
-      - Auth__Authority=https://dev-cl8od7hx.us.auth0.com
-      - Auth__Audience=OSafhsQn1OiTPAsuh79GZY04O7SaIAoe
       - ConnectionStrings__SQLServerBoardDB=Data Source=tasktower-mssql-db;Server=tasktower-mssql-db;User ID=sa;Password=P@ssword123;Database=board;
     depends_on:
       - tasktower-redis
