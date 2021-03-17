@@ -2,7 +2,7 @@ version: "3.9"
 services:
   tasktower-mssql-db:
     container_name: "tasktower-mssql-db"
-    image: mcr.microsoft.com/mssql/server:2017-latest
+    image: tasktower-sqlserverdatabase:latest
     ports:
       - "1433:1433"
     environment:
@@ -41,7 +41,7 @@ services:
       - tasktower
   tasktower-ocelot-gateway:
     container_name: "tasktower-ocelot-gateway"
-    image: tasktower-ocelotapigateway:latest
+    image: tasktower-ocelotgateway:latest
     depends_on:
       - tasktower-ui-service
       - tasktower-board-service

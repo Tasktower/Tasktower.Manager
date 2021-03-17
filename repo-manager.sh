@@ -1,8 +1,8 @@
 # set -x
 baseDir=$(basename "$PWD")
 repositories=( \
-    "Tasktower.UserService" \
-    "Tasktower.OcelotAPIGateway" \
+    "Tasktower.SQLServerDatabase" \
+    "Tasktower.OcelotGateway" \
     "Tasktower.Migrator" \
     "Tasktower.BoardService" \
     "Tasktower.UIService" )
