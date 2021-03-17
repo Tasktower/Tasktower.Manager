@@ -42,10 +42,16 @@ build_image() {
     echo "Building $servicename"
     echo "----------------------------------------------------------------------"
     cd ${dockerfile_localdir}
-    docker build \
-        --no-cache \
-        -t "tasktower-${servicename,,}" \
-        .
+
+    base_name="tasktower-${servicename,,}"
+    tag=$(git log -1 --pretty=%H)
+
+    img="${base_name}:${tag}"
+    latest="${base_name}:latest"
+
+    docker build --no-cache -t ${img} .
+    docker tag ${img} ${latest}
+
     cd ${tmp_startdir}
 } 
 

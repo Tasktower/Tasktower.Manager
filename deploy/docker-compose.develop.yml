@@ -21,7 +21,7 @@ services:
       - tasktower
   tasktower-board-service:
     container_name: "tasktower-board-service"
-    image: tasktower-boardservice
+    image: tasktower-boardservice:latest
     ports:
       - "8082:80"
     environment:
@@ -34,14 +34,14 @@ services:
       - tasktower
   tasktower-ui-service:
     container_name: "tasktower-ui-service"
-    image: tasktower-uiservice
+    image: tasktower-uiservice:latest
     ports:
       - "8081:80"
     networks:
       - tasktower
   tasktower-ocelot-gateway:
     container_name: "tasktower-ocelot-gateway"
-    image: tasktower-ocelotapigateway
+    image: tasktower-ocelotapigateway:latest
     depends_on:
       - tasktower-ui-service
       - tasktower-board-service
