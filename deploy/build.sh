@@ -21,7 +21,6 @@ print_help()
     echo "Options:"
     echo "  -h                  help"
     echo "  -i                  list services"
-    echo "                          ex) ./project-manager.sh -c \"checkout master\" "
     echo "  -s service          build a specific service"
 }
 
