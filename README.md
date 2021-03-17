@@ -69,13 +69,14 @@ docker-compose -f docker-compose.develop.yml -p tasktower up -d
 
 This will start all of your containers.
 
-Keep in mind that docker compose may fail because the databases aren't properly initialized in sql server,
-if that is the case, open Azure Data Studio or SQL Server Managment Studio and create your needed databases 
-and rerun the docker compose command. 
+Keep in mind that docker compose may fail because the databases initialized yet in sql server,
+if that is the case, just rerun the previous docker command when the databases are initialized.
+
+You can use Azure Data Studio or SQL Server Managment Studio to check you sql server instance.
 
 Refer to docker-compose.develop.yml to see what port and credentials SQL Server is running on.
 
-Once this is all set up, go into your browser to `http://localhost:8080` and if the UI is running, then we succesfully 
-deployed tasktower. Localhost:8080 is where our api gateway is mapped to so you can use it to access our backend apis.
+Once this is all set up, go into your browser to `http://localhost:9090` and if the UI is running, then we succesfully 
+deployed tasktower. Localhost:9090 is where our api gateway is mapped to so you can use it to access our backend apis.
 
 Later on we will switch to https deployment for better security.
