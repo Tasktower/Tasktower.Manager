@@ -6,16 +6,20 @@ BoardService="BoardService"
 BoardService_Dockerfile_Localdir="Tasktower.BoardService/Tasktower.BoardService"
 
 OcelotGateway="OcelotGateway"
-OcelotAPIGateway_Dockerfile_Localdir="Tasktower.OcelotGateway/Tasktower.OcelotGateway"
+OcelotGateway_Dockerfile_Localdir="Tasktower.OcelotGateway/Tasktower.OcelotGateway"
 
 SQLServerDatabase="SQLServerDatabase"
 SQLServerDatabase_Dockerfile_Localdir="Tasktower.SQLServerDatabase"
+
+Migrator="Migrator"
+Migrator_Dockerfile_Localdir="Tasktower.Migrator/Tasktower.Migrator"
 
 Servicenames=( \
     ${UIService} \
     ${BoardService} \
     ${OcelotGateway} \
-    ${SQLServerDatabase})
+    ${SQLServerDatabase} \
+    ${Migrator})
 
 print_help()
 {
