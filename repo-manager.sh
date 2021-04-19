@@ -57,6 +57,9 @@ while getopts r:c:b:h flag; do
             fi
             repositories=( "$OPTARG" )
         ;;
+        *)
+          help_and_exit
+        ;;
     esac
 done
 
