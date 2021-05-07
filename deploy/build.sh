@@ -43,9 +43,15 @@ build_image() {
   cd "Tasktower.${servicename}"
 
   base_img="tasktower-${servicename,,}"
-  tag=$(git log -1 --pretty=%H)
+  
+  git_commit_hash=$(git log -1 --pretty=%H)
+  git_version_description=$(git describe --tags)
+  version="${git_version_description}-${git_commit_hash}"
+  [ -z "$(git tag --points-at HEAD)" ] && version="${version}-dirty"
+  
+  echo "version: ${version}"
 
-  img="${base_img}:${tag}"
+  img="${base_img}:${version}"
   latest="${base_img}:latest"
 
   docker build --no-cache -t ${img} .
