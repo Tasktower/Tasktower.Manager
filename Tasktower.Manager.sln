@@ -3,9 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30907.101
 MinimumVisualStudioVersion = 15.0.26124.0
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tasktower.Manager", "Tasktower.Manager.csproj", "{3EB8D491-F80F-4199-BACC-2CFD806FE5A6}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{03D63DF5-3EB6-4CBF-892A-8DC1B5A41750}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Projects", "Projects", "{03D63DF5-3EB6-4CBF-892A-8DC1B5A41750}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tasktower.BoardService", "..\Tasktower.BoardService\Tasktower.BoardService\Tasktower.BoardService.csproj", "{04DF1A53-A95E-4449-8CF0-8786C716061C}"
 EndProject
@@ -17,18 +15,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tasktower.Migrator", "..\Ta
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tasktower.OcelotGateway", "..\Tasktower.OcelotGateway\Tasktower.OcelotGateway\Tasktower.OcelotGateway.csproj", "{958C2663-1188-47E2-9009-EC412E9AC01E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tasktower.SQLServerDatabase", "..\Tasktower.SQLServerDatabase\Tasktower.SQLServerDatabase.csproj", "{D8F26020-1743-4F56-9AB9-ED93522FE6F7}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{3EB8D491-F80F-4199-BACC-2CFD806FE5A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3EB8D491-F80F-4199-BACC-2CFD806FE5A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3EB8D491-F80F-4199-BACC-2CFD806FE5A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3EB8D491-F80F-4199-BACC-2CFD806FE5A6}.Release|Any CPU.Build.0 = Release|Any CPU
 		{04DF1A53-A95E-4449-8CF0-8786C716061C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{04DF1A53-A95E-4449-8CF0-8786C716061C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{04DF1A53-A95E-4449-8CF0-8786C716061C}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -49,10 +41,6 @@ Global
 		{958C2663-1188-47E2-9009-EC412E9AC01E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{958C2663-1188-47E2-9009-EC412E9AC01E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{958C2663-1188-47E2-9009-EC412E9AC01E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D8F26020-1743-4F56-9AB9-ED93522FE6F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D8F26020-1743-4F56-9AB9-ED93522FE6F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D8F26020-1743-4F56-9AB9-ED93522FE6F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D8F26020-1743-4F56-9AB9-ED93522FE6F7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -63,7 +51,6 @@ Global
 		{B8F69038-1772-4B5A-B751-B9A8C1B51F14} = {03D63DF5-3EB6-4CBF-892A-8DC1B5A41750}
 		{515EFA94-CF67-4252-8B84-D69E88474BFD} = {03D63DF5-3EB6-4CBF-892A-8DC1B5A41750}
 		{958C2663-1188-47E2-9009-EC412E9AC01E} = {03D63DF5-3EB6-4CBF-892A-8DC1B5A41750}
-		{D8F26020-1743-4F56-9AB9-ED93522FE6F7} = {03D63DF5-3EB6-4CBF-892A-8DC1B5A41750}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E8D83CC4-5896-4B85-B28A-E8D9ADF4C0BE}

@@ -1,18 +1,10 @@
 #set -x
+
 UIService="UIService"
-UIService_Dockerfile_Localdir="Tasktower.UIService/Tasktower.UIService"
-
 BoardService="BoardService"
-BoardService_Dockerfile_Localdir="Tasktower.BoardService/Tasktower.BoardService"
-
 OcelotGateway="OcelotGateway"
-OcelotGateway_Dockerfile_Localdir="Tasktower.OcelotGateway/Tasktower.OcelotGateway"
-
 SQLServerDatabase="SQLServerDatabase"
-SQLServerDatabase_Dockerfile_Localdir="Tasktower.SQLServerDatabase"
-
 Migrator="Migrator"
-Migrator_Dockerfile_Localdir="Tasktower.Migrator/Tasktower.Migrator"
 
 Servicenames=( \
   ${UIService} \
@@ -43,12 +35,11 @@ print_service_names() {
 
 build_image() {
   servicename=$1
-  dockerfile_localdir=$2
   tmp_startdir=$(pwd)
   echo "----------------------------------------------------------------------"
   echo "Building $servicename"
   echo "----------------------------------------------------------------------"
-  cd ${dockerfile_localdir}
+  cd "Tasktower.${servicename}"
 
   base_img="tasktower-${servicename,,}"
   tag=$(git log -1 --pretty=%H)
@@ -91,8 +82,7 @@ done
 cd ../../
 for servicename in ${Servicenames[@]};
 do
-  declare -n dockerfile_path=${servicename}_Dockerfile_Localdir
-  build_image ${servicename} $dockerfile_path
+  build_image ${servicename}
 done
 cd Tasktower.Manager/deploy
 set -- $args
