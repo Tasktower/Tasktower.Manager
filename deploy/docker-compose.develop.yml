@@ -38,6 +38,8 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=development
       - ConnectionStrings__SQLServerBoardDB=Data Source=tasktower-mssql-db;Server=tasktower-mssql-db;User ID=sa;Password=P@ssword123;Database=board;
+      - Auth__Authority=https://dev-cl8od7hx.us.auth0.com
+      - Auth__Audience=OSafhsQn1OiTPAsuh79GZY04O7SaIAoe
     depends_on:
       - tasktower-redis
       - tasktower-mssql-db
@@ -57,9 +59,7 @@ services:
     depends_on:
       - tasktower-ui-service
       - tasktower-board-service
-    environment:
-      - Auth__Authority=https://dev-cl8od7hx.us.auth0.com
-      - Auth__Audience=OSafhsQn1OiTPAsuh79GZY04O7SaIAoe
+#    environment:
     ports:
       - "9090:80"
     networks:
