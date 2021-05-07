@@ -53,6 +53,8 @@ services:
       - "8081:80"
     networks:
       - tasktower
+    environment:
+      - Render__Cache=false
   tasktower-ocelot-gateway:
     container_name: "tasktower-ocelot-gateway"
     image: tasktower-ocelotgateway:latest
