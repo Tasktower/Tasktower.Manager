@@ -2,7 +2,7 @@ version: "3.9"
 services:
   tasktower-mssql-db:
     container_name: "tasktower-mssql-db"
-    image: tasktower-sqlserverdatabase:latest
+    image: tasktower-sql-server-database:latest
     ports:
       - "1433:1433"
     environment:
@@ -19,11 +19,11 @@ services:
       - REDIS_PASSWORD=password123
     networks:
       - tasktower
-  tasktower-board-migration:
-    container_name: "tasktower-board-migration"
+  tasktower-project-service-migration:
+    container_name: "tasktower-project-service-migration"
     image: tasktower-migrator:latest
     environment:
-      - CONNECTION_STRING= Data Source=tasktower-mssql-db;Server=tasktower-mssql-db;User ID=sa;Password=P@ssword123;Database=board;
+      - CONNECTION_STRING= Data Source=tasktower-mssql-db;Server=tasktower-mssql-db;User ID=sa;Password=P@ssword123;Database=project;
       - SERVICE=Board
       - SWITCH_ARGS= -d
     depends_on:
@@ -32,23 +32,23 @@ services:
       - tasktower
   tasktower-project-service:
     container_name: "tasktower-project-service"
-    image: tasktower-boardservice:latest
+    image: tasktower-project-service:latest
     ports:
       - "8082:80"
     environment:
       - ASPNETCORE_ENVIRONMENT=development
-      - ConnectionStrings__SQLServerBoardDB=Data Source=tasktower-mssql-db;Server=tasktower-mssql-db;User ID=sa;Password=P@ssword123;Database=board;
+      - ConnectionStrings__SQLServerBoardDB=Data Source=tasktower-mssql-db;Server=tasktower-mssql-db;User ID=sa;Password=P@ssword123;Database=project;
       - Auth__Authority=https://dev-cl8od7hx.us.auth0.com
       - Auth__Audience=OSafhsQn1OiTPAsuh79GZY04O7SaIAoe
     depends_on:
       - tasktower-redis
       - tasktower-mssql-db
-      - tasktower-board-migration
+      - tasktower-project-service-migration
     networks:
       - tasktower
   tasktower-ui-service:
     container_name: "tasktower-ui-service"
-    image: tasktower-uiservice:latest
+    image: tasktower-ui-service:latest
     ports:
       - "8081:80"
     networks:
@@ -57,10 +57,10 @@ services:
       - Render__Cache=false
   tasktower-ocelot-gateway:
     container_name: "tasktower-ocelot-gateway"
-    image: tasktower-ocelotgateway:latest
+    image: tasktower-ocelot-gateway:latest
     depends_on:
       - tasktower-ui-service
-      - tasktower-board-service
+      - tasktower-project-service
 #    environment:
     ports:
       - "9090:80"

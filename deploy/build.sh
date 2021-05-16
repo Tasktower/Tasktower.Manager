@@ -91,5 +91,5 @@ for servicename in ${Servicenames[@]};
 do
   build_image ${servicename}
 done
-cd Tasktower.Manager/deploy
+cd Tasktower-Manager/deploy
 set -- $args
