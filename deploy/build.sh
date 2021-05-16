@@ -1,15 +1,15 @@
 #set -x
 
 # Services
-UIService="UIService"
-BoardService="BoardService"
-OcelotGateway="OcelotGateway"
-SQLServerDatabase="SQLServerDatabase"
+UIService="UI-Service"
+ProjectService="Project-Service"
+OcelotGateway="Ocelot-Gateway"
+SQLServerDatabase="SQL-Server-Database"
 Migrator="Migrator"
 
 Servicenames=( \
   ${UIService} \
-  ${BoardService} \
+  ${ProjectService} \
   ${OcelotGateway} \
   ${SQLServerDatabase} \
   ${Migrator})
@@ -40,7 +40,7 @@ build_image() {
   echo "----------------------------------------------------------------------"
   echo "Building $servicename"
   echo "----------------------------------------------------------------------"
-  cd "Tasktower.${servicename}"
+  cd "Tasktower-${servicename}"
 
   base_img="tasktower-${servicename,,}"
   

@@ -30,8 +30,8 @@ services:
       - tasktower-mssql-db
     networks:
       - tasktower
-  tasktower-board-service:
-    container_name: "tasktower-board-service"
+  tasktower-project-service:
+    container_name: "tasktower-project-service"
     image: tasktower-boardservice:latest
     ports:
       - "8082:80"

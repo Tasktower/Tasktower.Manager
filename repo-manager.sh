@@ -1,24 +1,34 @@
 # set -x
 baseDir=$(basename "$PWD")
 repositories=( \
-    "Tasktower.SQLServerDatabase" \
-    "Tasktower.OcelotGateway" \
-    "Tasktower.Migrator" \
-    "Tasktower.BoardService" \
-    "Tasktower.UIService" )
+    "Tasktower-SQL-Server-Database" \
+    "Tasktower-Ocelot-Gateway" \
+    "Tasktower-Migrator" \
+    "Tasktower-Project-Service" \
+    "Tasktower-UI-Service" )
 HELP_FLAG=false
 BRANCH=master
 GIT_COMMAND=" status "
 
-help_and_exit()
+help()
 {
   echo "Usage: gitmanager.sh [OPTIONS]"
   echo "Options:"
   echo "  -h                  help"
   echo "  -c git_command      git command fot your repositories"
   echo "                          ex) ./project-manager.sh -c \"checkout master\" "
-  echo "  -r repository       project repository e.g) ./project-manager.sh -r Tasktower.Webutils"
-  exit 0
+  echo "  -r repository       project repository e.g) ./project-manager.sh -r Tasktower-Project-Service"
+  echo ""
+  list_repositories
+}
+
+list_repositories()
+{
+  echo "Repositories"
+  echo "-------------------"
+  for repo in ${repositories[@]}; do
+    echo "${repo}"
+  done
 }
 
 manageRepositories() 
@@ -39,7 +49,8 @@ manageRepositories()
 while getopts r:c:b:h flag; do
   case "${flag}" in
     h) 
-      help_and_exit
+      help
+      exit 0
     ;;
     b) 
       BRANCH=$OPTARG
@@ -58,7 +69,8 @@ while getopts r:c:b:h flag; do
       repositories=( "$OPTARG" )
     ;;
     *)
-      help_and_exit
+      help
+      exit 1
     ;;
   esac
 done

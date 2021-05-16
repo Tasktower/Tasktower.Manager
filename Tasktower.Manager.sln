@@ -5,15 +5,15 @@ VisualStudioVersion = 16.0.30907.101
 MinimumVisualStudioVersion = 15.0.26124.0
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Projects", "Projects", "{03D63DF5-3EB6-4CBF-892A-8DC1B5A41750}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tasktower.BoardService", "..\Tasktower.BoardService\Tasktower.BoardService\Tasktower.BoardService.csproj", "{04DF1A53-A95E-4449-8CF0-8786C716061C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tasktower.ProjectService", "..\Tasktower-Project-Service\Tasktower.ProjectService\Tasktower.ProjectService.csproj", "{04DF1A53-A95E-4449-8CF0-8786C716061C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tasktower.BoardService.Tests", "..\Tasktower.BoardService\Tasktower.BoardService.Tests\Tasktower.BoardService.Tests.csproj", "{0C5C15D0-535F-497A-81F2-8839A550B021}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tasktower.ProjectService.Tests", "..\Tasktower-Project-Service\Tasktower.ProjectService.Tests\Tasktower.ProjectService.Tests.csproj", "{0C5C15D0-535F-497A-81F2-8839A550B021}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tasktower.UIService", "..\Tasktower.UIService\Tasktower.UIService\Tasktower.UIService.csproj", "{B8F69038-1772-4B5A-B751-B9A8C1B51F14}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tasktower.UIService", "..\Tasktower-UI-Service\Tasktower.UIService\Tasktower.UIService.csproj", "{B8F69038-1772-4B5A-B751-B9A8C1B51F14}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tasktower.Migrator", "..\Tasktower.Migrator\Tasktower.Migrator\Tasktower.Migrator.csproj", "{515EFA94-CF67-4252-8B84-D69E88474BFD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tasktower.Migrator", "..\Tasktower-Migrator\Tasktower.Migrator\Tasktower.Migrator.csproj", "{515EFA94-CF67-4252-8B84-D69E88474BFD}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tasktower.OcelotGateway", "..\Tasktower.OcelotGateway\Tasktower.OcelotGateway\Tasktower.OcelotGateway.csproj", "{958C2663-1188-47E2-9009-EC412E9AC01E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tasktower.OcelotGateway", "..\Tasktower-Ocelot-Gateway\Tasktower.OcelotGateway\Tasktower.OcelotGateway.csproj", "{958C2663-1188-47E2-9009-EC412E9AC01E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
