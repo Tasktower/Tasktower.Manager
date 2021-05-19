@@ -38,8 +38,8 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=development
       - ConnectionStrings__SQLServerBoardDB=Data Source=tasktower-mssql-db;Server=tasktower-mssql-db;User ID=sa;Password=P@ssword123;Database=project;
-      - Auth__Authority=https://dev-cl8od7hx.us.auth0.com
-      - Auth__Audience=OSafhsQn1OiTPAsuh79GZY04O7SaIAoe
+      - Authentication__Authority=https://dev-cl8od7hx.us.auth0.com
+      - Authentication__Audience=OSafhsQn1OiTPAsuh79GZY04O7SaIAoe
     depends_on:
       - tasktower-redis
       - tasktower-mssql-db
