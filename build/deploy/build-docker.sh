@@ -40,7 +40,7 @@ build_image() {
   echo "----------------------------------------------------------------------"
   echo "Building $servicename"
   echo "----------------------------------------------------------------------"
-  cd "Tasktower-${servicename}"
+  cd "../Tasktower-${servicename}"
 
   base_img="tasktower-${servicename,,}"
   
