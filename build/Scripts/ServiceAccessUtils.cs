@@ -23,9 +23,7 @@ namespace _build.Scripts
             }
         }
 
-        public static IEnumerable<ServiceDefinition> ProjectsList => ServiceDictionary.Values;
-
-        public static IEnumerable<ServiceDefinition> DotNetProjectsList => ProjectsList
-            .Where(p => p.IsDotNetProject);
+        public static IEnumerable<ServiceDefinition> ServicesList => ServiceDictionary.Values;
+        
     }
 }

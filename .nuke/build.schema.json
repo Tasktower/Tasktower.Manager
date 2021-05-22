@@ -18,6 +18,10 @@
           "type": "boolean",
           "description": "Indicates to continue a previously failed build attempt"
         },
+        "DockerBuildLatest": {
+          "type": "boolean",
+          "description": "Docker build sets tag as latest"
+        },
         "GitCloneBranch": {
           "type": "string",
           "description": "Git Clone branch (i.e.) master"
@@ -76,14 +80,15 @@
           "items": {
             "type": "string",
             "enum": [
-              "Clean",
-              "Compile",
+              "DockerBuild",
+              "DotnetClean",
+              "DotnetCompile",
+              "DotnetPublish",
+              "DotnetRestore",
+              "DotnetTest",
+              "DotnetTestAndPublish",
               "GitRun",
               "ListServices",
-              "Publish",
-              "Restore",
-              "Test",
-              "TestAndPublish",
               "Version"
             ]
           }
@@ -98,14 +103,15 @@
           "items": {
             "type": "string",
             "enum": [
-              "Clean",
-              "Compile",
+              "DockerBuild",
+              "DotnetClean",
+              "DotnetCompile",
+              "DotnetPublish",
+              "DotnetRestore",
+              "DotnetTest",
+              "DotnetTestAndPublish",
               "GitRun",
               "ListServices",
-              "Publish",
-              "Restore",
-              "Test",
-              "TestAndPublish",
               "Version"
             ]
           }

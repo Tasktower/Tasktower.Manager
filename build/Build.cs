@@ -1,16 +1,17 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using _build.ConfigScripts;
 using _build.Scripts;
 using Nuke.Common;
 using Nuke.Common.CI;
 using Nuke.Common.Execution;
-using Nuke.Common.Git;
 using Nuke.Common.IO;
 using Nuke.Common.ProjectModel;
 using Nuke.Common.Tooling;
+using Nuke.Common.Tools.Docker;
 using Nuke.Common.Tools.DotNet;
-using Nuke.Common.Tools.Git;
 using static Nuke.Common.Tools.DotNet.DotNetTasks;
 
 namespace _build
@@ -25,7 +26,7 @@ namespace _build
         ///   - Microsoft VisualStudio     https://nuke.build/visualstudio
         ///   - Microsoft VSCode           https://nuke.build/vscode
 
-        public static int Main () => Execute<Build>(x => x.Compile);
+        public static int Main () => Execute<Build>(x => x.DotnetCompile);
 
         [Parameter("Configuration to build - Default is 'Debug' (local) or 'Release' (server)")]
         readonly Configuration Configuration = IsLocalBuild ? Configuration.Debug : Configuration.Release;
@@ -46,91 +47,95 @@ namespace _build
         [Parameter("Git Clone branch (i.e.) master")] 
         readonly string GitCloneBranch = "master";
 
-        AbsolutePath ProjectsDirectory = RootDirectory / "..";
-        readonly string OutputFolder = "Tasktower";
+        [Parameter("Docker build sets tag as latest")]
+        readonly bool DockerBuildLatest = true;
 
-        private bool ServiceChosen() => ServiceName != null; 
-        private bool ChosenServiceExists() => ServiceChosen() && ServiceAccessUtils.ServiceExists(ServiceName);
-        private bool UsingDotNetServices() => !ServiceChosen() || !ServiceAccessUtils.ServiceExists(ServiceName) ||
-                                              ServiceAccessUtils.ServiceExists(ServiceName) && 
-                                              ServiceAccessUtils.ServiceDictionary[ServiceName].IsDotNetProject;
-    
-        private string ChosenServiceDirectoryOrFromManager() => ChosenServiceExists()
+        AbsolutePath ProjectsDirectory = RootDirectory / "..";
+
+        // Service chosen flags
+        private bool ServiceChosen => ServiceName != null; 
+        private bool ChosenServiceExists => ServiceChosen && ServiceAccessUtils.ServiceExists(ServiceName);
+        
+        // File/Folder path accesors
+        private string ChosenServiceDirectoryOrFromManager => ChosenServiceExists
             ? ServiceAccessUtils.ServiceDictionary[ServiceName].ServiceFolder(RootDirectory)
             : Solution;
-        private string ChosenServiceSolutionFileOrFromManager() => ChosenServiceExists()
+        private string ChosenServiceSolutionFileOrFromManager => ChosenServiceExists
             ? ServiceAccessUtils.ServiceDictionary[ServiceName].ServiceSolutionFile(ProjectsDirectory)
             : Solution;
+        
+        // Chosen services
+        private IEnumerable<ServiceDefinition> ChosenServiceDefinitions => ServiceChosen? 
+            new[]{ ServiceAccessUtils.ServiceDictionary[ServiceName] }: 
+            ServiceAccessUtils.ServicesList
+                .Where(s => Directory.Exists(s.ServiceFolder(ProjectsDirectory)));
 
 
         Target ListServices => _ => _
+            .Description("List services")
             .Executes(() =>
             {
                 ServiceAccessUtils.Execute(
-                    ServiceAccessUtils.ProjectsList, 
+                    ServiceAccessUtils.ServicesList, 
                     s => Console.WriteLine(s.ServiceName));
             });
 
-        Target Clean => _ => _
-            .Before(Restore)
+        Target DotnetClean => _ => _
+            .Description("Clean .net service(s)")
+            .Before(DotnetRestore)
             .Executes(() =>
             {
             });
     
-        Target Restore => _ => _
+        Target DotnetRestore => _ => _
+            .Description("Restore .net service(s)")
             .Executes(() =>
             {
                 DotNetRestore(s => s
-                    .SetProjectFile(ChosenServiceSolutionFileOrFromManager()));
+                    .SetProjectFile(ChosenServiceSolutionFileOrFromManager));
             });
-        Target Compile => _ => _
-            .DependsOn(Restore)
+        Target DotnetCompile => _ => _
+            .Description("Compile .net service(s)")
+            .DependsOn(DotnetRestore)
             .Executes(() =>
             {
                 DotNetBuild(s => s
-                    .SetProjectFile(ChosenServiceSolutionFileOrFromManager())
+                    .SetProjectFile(ChosenServiceSolutionFileOrFromManager)
                     .SetConfiguration(Configuration)
                     .EnableNoRestore());
             });
     
-        Target Test => _ => _
-            .Requires(() => UsingDotNetServices())
+        Target DotnetTest => _ => _
+            .Description("Test .net service(s)")
             .Executes(() =>
             {
                 DotNetTest(s => s
-                    .SetProjectFile(ChosenServiceSolutionFileOrFromManager()));
+                    .SetProjectFile(ChosenServiceSolutionFileOrFromManager));
             });
 
-        Target Publish => _ => _
-            .DependsOn(Compile)
-            .Requires(() => UsingDotNetServices() && ChosenServiceExists())
+        Target DotnetPublish => _ => _
+            .Description("Publish .net service(s)")
+            .DependsOn(DotnetCompile)
             .Executes(() =>
             {
-                DotNetPublish(s => s
-                    .SetConfiguration(Configuration)
-                    .SetOutput(ServiceAccessUtils.ServiceDictionary[ServiceName]
-                        .ServiceMainProjectFolder(ProjectsDirectory) / "bin" / OutputFolder)
-                    .SetProject(ServiceAccessUtils.ServiceDictionary[ServiceName]
-                        .ServiceMainProjectFile(ProjectsDirectory)));
+                ServiceAccessUtils.Execute(ChosenServiceDefinitions, service =>
+                {
+                    DotNetPublish(s => s
+                        .SetConfiguration(Configuration)
+                        .SetOutput(service.ServiceMainProjectFolder(ProjectsDirectory) / BuildConfig.OutputFolder)
+                        .SetProject(service.ServiceMainProjectFile(ProjectsDirectory)));
+                });
             });
 
-        Target TestAndPublish => _ => _
-            .DependsOn(Test)
-            .Inherit(Publish);
+        Target DotnetTestAndPublish => _ => _
+            .Description("Test and publish .net service(s)")
+            .DependsOn(DotnetTest, DotnetPublish);
         
         Target Version => _ => _
+            .Description("Print version")
             .Executes(() =>
             {
-                if (ServiceChosen())
-                {
-                    var version = VersionUtils.GetVersion(ServiceAccessUtils
-                        .ServiceDictionary[ServiceName]
-                        .ServiceFolder(ProjectsDirectory));
-                    Console.WriteLine($"{ServiceName} version: {version}");
-                    return;
-                }
-
-                ServiceAccessUtils.Execute(ServiceAccessUtils.ProjectsList, s =>
+                ServiceAccessUtils.Execute(ChosenServiceDefinitions, s =>
                 {
                     var version = VersionUtils.GetVersion(s.ServiceFolder(ProjectsDirectory));
                     Console.WriteLine($"{s.ServiceName} version: {version}");
@@ -138,21 +143,38 @@ namespace _build
             });
         
         Target GitRun => _ => _
+            .Description("Run git commands.\n" +
+                         "    Requires the git command parameter to specify git commands.\n" +
+                         "    Status is the default command.\n" +
+                         "    If the service is not found, GitRun will automatically clone the repository.")
             .Executes(() =>
             {
-                if (ServiceChosen())
+                ServiceAccessUtils.Execute(ChosenServiceDefinitions, s => 
                 {
-                    GitUtils.RunGitCommandExistsOrClone(GitCommand,  
-                        ServiceAccessUtils.ServiceDictionary[ServiceName], 
-                        ProjectsDirectory, GitCloneBranch);
-                }
-                else
+                    GitUtils.RunGitCommandExistsOrClone(GitCommand, s, ProjectsDirectory, GitCloneBranch);
+                });  
+                
+            });
+
+        Target DockerBuild => _ => _
+            .Description("Build docker image(s)")
+            .Executes(() =>
+            {
+                ServiceAccessUtils.Execute(ChosenServiceDefinitions, service =>
                 {
-                    ServiceAccessUtils.Execute(ServiceAccessUtils.ProjectsList, s =>
+                    ISet<string> tags = new HashSet<string>();
+                    tags.Add(VersionUtils.GetVersion(service.ServiceFolder(ProjectsDirectory)));
+                    if (DockerBuildLatest)
                     {
-                        GitUtils.RunGitCommandExistsOrClone(GitCommand, s, ProjectsDirectory, GitCloneBranch);
-                    });  
-                }
+                        tags.Add("latest");
+                    }
+
+                    DockerTasks.DockerBuild(s => s
+                        .SetFile(service.ServiceFolder(ProjectsDirectory))
+                        .EnableNoCache()
+                        .SetTag(tags)
+                    );
+                });
             });
 
     }

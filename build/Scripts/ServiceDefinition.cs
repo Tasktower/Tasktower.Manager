@@ -9,9 +9,9 @@ namespace _build.Scripts
         public string RepositoryUrl { get; set; }
         public string SolutionFile { get; set; }
         public string MainProject { get; set; }
-        public string MainProjectFilePath { get; set; }
-        public bool IsDotNetProject { get; set; } = true;
-    
+        public string MainProjectDirectory { get; set; }
+        
+        public string DockerFilePath { get; set; }
         public AbsolutePath ServiceFolder(AbsolutePath projectsDir)
         {
             return projectsDir / ServiceFolderName;
@@ -24,12 +24,17 @@ namespace _build.Scripts
     
         public AbsolutePath ServiceMainProjectFolder(AbsolutePath projectsDir)
         {
-            return ServiceFolder(projectsDir) / MainProjectFilePath ;
+            return ServiceFolder(projectsDir) / MainProjectDirectory ;
         }
     
         public AbsolutePath ServiceMainProjectFile(AbsolutePath projectsDir)
         {
             return ServiceMainProjectFolder(projectsDir) / $"{MainProject}.csproj" ;
+        }
+        
+        public AbsolutePath ServiceDockerFile(AbsolutePath projectsDir)
+        {
+            return ServiceFolder(projectsDir) / DockerFilePath;
         }
 
     }

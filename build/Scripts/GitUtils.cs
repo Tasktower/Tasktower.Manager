@@ -10,15 +10,13 @@ namespace _build.Scripts
         public static void RunGitCommandExistsOrClone(string gitCommand, ServiceDefinition s, 
             AbsolutePath projectsDirectory, string gitCloneBranch)
         {
-            if (Directory.Exists(s.ServiceFolder(projectsDirectory)))
-            { 
-                GitTasks.Git(gitCommand, s.ServiceFolder(projectsDirectory));
-            }
-            else
+            if (!Directory.Exists(s.ServiceFolder(projectsDirectory)))
             {
-                GitTasks.Git($"clone --branch {gitCloneBranch} {s.RepositoryUrl} {s.ServiceFolderName}", 
+                Console.WriteLine("Repository not found, cloning from remote");
+                GitTasks.Git($"clone --branch {gitCloneBranch} {s.RepositoryUrl} {s.ServiceFolderName}",
                     projectsDirectory);
             }
+            GitTasks.Git(gitCommand, s.ServiceFolder(projectsDirectory));
         }
     }
 }

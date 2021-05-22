@@ -14,7 +14,8 @@ namespace _build.ConfigScripts
                 RepositoryUrl = "https://github.com/Tasktower/Tasktower-Migrator.git",
                 SolutionFile = "Tasktower-Migrator.sln",
                 MainProject = "Tasktower.Migrator",
-                MainProjectFilePath = "Tasktower.Migrator"
+                MainProjectDirectory = "Tasktower.Migrator",
+                DockerFilePath = "Dockerfile"
 
             },
             new()
@@ -24,7 +25,8 @@ namespace _build.ConfigScripts
                 SolutionFile = "Tasktower-Ocelot-Gateway.sln",
                 RepositoryUrl = "https://github.com/Tasktower/Tasktower-Ocelot-Gateway.git",
                 MainProject = "Tasktower.OcelotGateway",
-                MainProjectFilePath = "Tasktower.OcelotGateway"
+                MainProjectDirectory = "Tasktower.OcelotGateway",
+                DockerFilePath = "Dockerfile"
             },
             new()
             {
@@ -33,7 +35,8 @@ namespace _build.ConfigScripts
                 RepositoryUrl = "https://github.com/Tasktower/Tasktower-Project-Service.git",
                 SolutionFile = "Tasktower-Project-Service.sln",
                 MainProject = "Tasktower.ProjectService",
-                MainProjectFilePath = "Tasktower.ProjectService"
+                MainProjectDirectory = "Tasktower.ProjectService",
+                DockerFilePath = "Dockerfile"
             },
             new()
             {
@@ -42,14 +45,17 @@ namespace _build.ConfigScripts
                 RepositoryUrl = "https://github.com/Tasktower/Tasktower-UI-Service.git",
                 SolutionFile = "Tasktower-UI-Service.sln",
                 MainProject = "Tasktower.UIService",
-                MainProjectFilePath = "Tasktower.UIService"
+                MainProjectDirectory = "Tasktower.UIService",
+                DockerFilePath = "Dockerfile"
             },
             new()
             {
                 ServiceName = "SQLServerDatabase",
                 ServiceFolderName = "Tasktower-SQL-Server-Database",
                 RepositoryUrl = "https://github.com/Tasktower/Tasktower-SQL-Server-Database.git",
-                IsDotNetProject = false,
+                MainProject = "Tasktower.SQLServerDatabase",
+                MainProjectDirectory = ".",
+                DockerFilePath = "Dockerfile"
             }
         };
     }
