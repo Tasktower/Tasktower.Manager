@@ -3,17 +3,21 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30907.101
 MinimumVisualStudioVersion = 15.0.26124.0
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Projects", "Projects", "{03D63DF5-3EB6-4CBF-892A-8DC1B5A41750}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "_build", "build\_build.csproj", "{5E052B95-6D59-4729-B90F-9200683513A3}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tasktower.ProjectService", "..\Tasktower-Project-Service\Tasktower.ProjectService\Tasktower.ProjectService.csproj", "{04DF1A53-A95E-4449-8CF0-8786C716061C}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Projects", "Projects", "{69908B12-4829-403F-8567-5B7628DA1196}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tasktower.ProjectService.Tests", "..\Tasktower-Project-Service\Tasktower.ProjectService.Tests\Tasktower.ProjectService.Tests.csproj", "{0C5C15D0-535F-497A-81F2-8839A550B021}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tasktower.Migrator", "..\Tasktower-Migrator\Tasktower.Migrator\Tasktower.Migrator.csproj", "{80B58522-ABC3-4690-9AA9-5F4717A631E4}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tasktower.UIService", "..\Tasktower-UI-Service\Tasktower.UIService\Tasktower.UIService.csproj", "{B8F69038-1772-4B5A-B751-B9A8C1B51F14}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tasktower.OcelotGateway", "..\Tasktower-Ocelot-Gateway\Tasktower.OcelotGateway\Tasktower.OcelotGateway.csproj", "{C12951CC-2985-48D7-8277-4A00B9C017BD}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tasktower.Migrator", "..\Tasktower-Migrator\Tasktower.Migrator\Tasktower.Migrator.csproj", "{515EFA94-CF67-4252-8B84-D69E88474BFD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tasktower.ProjectService.Tests", "..\Tasktower-Project-Service\Tasktower.ProjectService.Tests\Tasktower.ProjectService.Tests.csproj", "{2A7B3DB6-64C0-4BB0-88A8-80316B921BE5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tasktower.OcelotGateway", "..\Tasktower-Ocelot-Gateway\Tasktower.OcelotGateway\Tasktower.OcelotGateway.csproj", "{958C2663-1188-47E2-9009-EC412E9AC01E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tasktower.ProjectService", "..\Tasktower-Project-Service\Tasktower.ProjectService\Tasktower.ProjectService.csproj", "{003FF7D6-8AAF-41C2-BECE-636974A460DC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tasktower.UIService", "..\Tasktower-UI-Service\Tasktower.UIService\Tasktower.UIService.csproj", "{CE3F8DF0-595F-4DFD-B71E-3A4667D55B55}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tasktower.SQLServerDatabase", "..\Tasktower-SQL-Server-Database\Tasktower.SQLServerDatabase.csproj", "{DD1748F8-185C-4BF3-8E77-54859147AF68}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,36 +25,43 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{04DF1A53-A95E-4449-8CF0-8786C716061C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{04DF1A53-A95E-4449-8CF0-8786C716061C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{04DF1A53-A95E-4449-8CF0-8786C716061C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{04DF1A53-A95E-4449-8CF0-8786C716061C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0C5C15D0-535F-497A-81F2-8839A550B021}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0C5C15D0-535F-497A-81F2-8839A550B021}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0C5C15D0-535F-497A-81F2-8839A550B021}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0C5C15D0-535F-497A-81F2-8839A550B021}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B8F69038-1772-4B5A-B751-B9A8C1B51F14}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B8F69038-1772-4B5A-B751-B9A8C1B51F14}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B8F69038-1772-4B5A-B751-B9A8C1B51F14}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B8F69038-1772-4B5A-B751-B9A8C1B51F14}.Release|Any CPU.Build.0 = Release|Any CPU
-		{515EFA94-CF67-4252-8B84-D69E88474BFD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{515EFA94-CF67-4252-8B84-D69E88474BFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{515EFA94-CF67-4252-8B84-D69E88474BFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{515EFA94-CF67-4252-8B84-D69E88474BFD}.Release|Any CPU.Build.0 = Release|Any CPU
-		{958C2663-1188-47E2-9009-EC412E9AC01E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{958C2663-1188-47E2-9009-EC412E9AC01E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{958C2663-1188-47E2-9009-EC412E9AC01E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{958C2663-1188-47E2-9009-EC412E9AC01E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5E052B95-6D59-4729-B90F-9200683513A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E052B95-6D59-4729-B90F-9200683513A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{80B58522-ABC3-4690-9AA9-5F4717A631E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{80B58522-ABC3-4690-9AA9-5F4717A631E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{80B58522-ABC3-4690-9AA9-5F4717A631E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{80B58522-ABC3-4690-9AA9-5F4717A631E4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C12951CC-2985-48D7-8277-4A00B9C017BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C12951CC-2985-48D7-8277-4A00B9C017BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C12951CC-2985-48D7-8277-4A00B9C017BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C12951CC-2985-48D7-8277-4A00B9C017BD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2A7B3DB6-64C0-4BB0-88A8-80316B921BE5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2A7B3DB6-64C0-4BB0-88A8-80316B921BE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2A7B3DB6-64C0-4BB0-88A8-80316B921BE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2A7B3DB6-64C0-4BB0-88A8-80316B921BE5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{003FF7D6-8AAF-41C2-BECE-636974A460DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{003FF7D6-8AAF-41C2-BECE-636974A460DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{003FF7D6-8AAF-41C2-BECE-636974A460DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{003FF7D6-8AAF-41C2-BECE-636974A460DC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CE3F8DF0-595F-4DFD-B71E-3A4667D55B55}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE3F8DF0-595F-4DFD-B71E-3A4667D55B55}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE3F8DF0-595F-4DFD-B71E-3A4667D55B55}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE3F8DF0-595F-4DFD-B71E-3A4667D55B55}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DD1748F8-185C-4BF3-8E77-54859147AF68}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD1748F8-185C-4BF3-8E77-54859147AF68}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD1748F8-185C-4BF3-8E77-54859147AF68}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD1748F8-185C-4BF3-8E77-54859147AF68}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{04DF1A53-A95E-4449-8CF0-8786C716061C} = {03D63DF5-3EB6-4CBF-892A-8DC1B5A41750}
-		{0C5C15D0-535F-497A-81F2-8839A550B021} = {03D63DF5-3EB6-4CBF-892A-8DC1B5A41750}
-		{B8F69038-1772-4B5A-B751-B9A8C1B51F14} = {03D63DF5-3EB6-4CBF-892A-8DC1B5A41750}
-		{515EFA94-CF67-4252-8B84-D69E88474BFD} = {03D63DF5-3EB6-4CBF-892A-8DC1B5A41750}
-		{958C2663-1188-47E2-9009-EC412E9AC01E} = {03D63DF5-3EB6-4CBF-892A-8DC1B5A41750}
+		{80B58522-ABC3-4690-9AA9-5F4717A631E4} = {69908B12-4829-403F-8567-5B7628DA1196}
+		{C12951CC-2985-48D7-8277-4A00B9C017BD} = {69908B12-4829-403F-8567-5B7628DA1196}
+		{2A7B3DB6-64C0-4BB0-88A8-80316B921BE5} = {69908B12-4829-403F-8567-5B7628DA1196}
+		{003FF7D6-8AAF-41C2-BECE-636974A460DC} = {69908B12-4829-403F-8567-5B7628DA1196}
+		{CE3F8DF0-595F-4DFD-B71E-3A4667D55B55} = {69908B12-4829-403F-8567-5B7628DA1196}
+		{DD1748F8-185C-4BF3-8E77-54859147AF68} = {69908B12-4829-403F-8567-5B7628DA1196}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E8D83CC4-5896-4B85-B28A-E8D9ADF4C0BE}

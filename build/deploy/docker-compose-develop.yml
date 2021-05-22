@@ -1,8 +1,8 @@
 version: "3.9"
 services:
-  tasktower-mssql-db:
-    container_name: "tasktower-mssql-db"
-    image: tasktower-sql-server-database:latest
+  tasktower-sql-server-db:
+    container_name: "tasktower-sql-server-db"
+    image: tasktower-sql-server-db:latest
     ports:
       - "1433:1433"
     environment:
@@ -23,11 +23,11 @@ services:
     container_name: "tasktower-project-service-migration"
     image: tasktower-migrator:latest
     environment:
-      - CONNECTION_STRING= Data Source=tasktower-mssql-db;Server=tasktower-mssql-db;User ID=sa;Password=P@ssword123;Database=project;
+      - CONNECTION_STRING= Data Source=tasktower-sql-server-db;Server=tasktower-sql-server-db;User ID=sa;Password=P@ssword123;Database=project;
       - SERVICE=Board
       - SWITCH_ARGS= -d
     depends_on:
-      - tasktower-mssql-db
+      - tasktower-sql-server-db
     networks:
       - tasktower
   tasktower-project-service:
@@ -37,12 +37,12 @@ services:
       - "8082:80"
     environment:
       - ASPNETCORE_ENVIRONMENT=development
-      - ConnectionStrings__SQLServerBoardDB=Data Source=tasktower-mssql-db;Server=tasktower-mssql-db;User ID=sa;Password=P@ssword123;Database=project;
+      - ConnectionStrings__SQLServerBoardDB=Data Source=tasktower-sql-server-db;Server=tasktower-sql-server-db;User ID=sa;Password=P@ssword123;Database=project;
       - Authentication__Authority=https://dev-cl8od7hx.us.auth0.com
       - Authentication__Audience=OSafhsQn1OiTPAsuh79GZY04O7SaIAoe
     depends_on:
       - tasktower-redis
-      - tasktower-mssql-db
+      - tasktower-sql-server-db
       - tasktower-project-service-migration
     networks:
       - tasktower
