@@ -56,10 +56,7 @@ namespace _build
         private bool ServiceChosen => ServiceName != null; 
         private bool ChosenServiceExists => ServiceChosen && ServiceAccessUtils.ServiceExists(ServiceName);
         
-        // File/Folder path accesors
-        private string ChosenServiceDirectoryOrFromManager => ChosenServiceExists
-            ? ServiceAccessUtils.ServiceDictionary[ServiceName].ServiceFolder(RootDirectory)
-            : Solution;
+        // File/Folder path accessors
         private string ChosenServiceSolutionFileOrFromManager => ChosenServiceExists
             ? ServiceAccessUtils.ServiceDictionary[ServiceName].ServiceSolutionFile(ProjectsDirectory)
             : Solution;
