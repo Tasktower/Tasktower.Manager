@@ -17,7 +17,7 @@ It offers uses such as git managment, running builds and tests, interfacing with
 as well as handling deployment.
 
 To install nuke, please go to Tasktower-Manager root directory in your bash shell and run:
-```bash
+```shell
 chmod +x install 
 sh ./install.sh
 ```
@@ -44,12 +44,12 @@ you installed will pop up.
 Here is some more commands to get you more acquainted with nuke.
 
 How you can create a new branch:
-```bash
+```shell
 nuke GitRun --git-command 'checkout -b new_branch'
 ```
 
 How you can stage files for a specific service found in ListServices:
-```bash
+```shell
 nuke GitRun --git-command 'add .' --service-name <some_service>
 ```
 
@@ -61,7 +61,7 @@ to one service, you need to specify it. Each service is it's own git repository.
 To commit, or do any other commands with double quotes, you need to escape them from `"` to `//"`.
 For example:
 
-```bash
+```shell
 nuke GitRun --git-command 'commit -m \\"hello commit message\\"' --service-name <some_service>
 ```
 
@@ -76,7 +76,7 @@ Refer to the the previous section in git managment for more details.
 
 To start building all of your docker images, you first need to publish 
 your projects:
-```bash
+```shell
 nuke DotnetPublish
 ```
 
@@ -86,7 +86,7 @@ If they don't, the docker images you built with them won't work._
 
 Once your images are up and running, you need to execute docker-compose
 to start your containers. Run 
-```bash
+```shell
 cd deploy
 docker-compose -f docker-compose-develop.yml -p tasktower up -d
 ```
