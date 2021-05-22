@@ -18,7 +18,7 @@ as well as handling deployment.
 
 To install nuke, please go to Tasktower-Manager root directory in your bash shell and run:
 ```shell
-chmod +x install 
+chmod +x install.sh 
 sh ./install.sh
 ```
 You will now have nuke installed.
