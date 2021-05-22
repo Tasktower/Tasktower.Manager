@@ -171,6 +171,7 @@ namespace _build
                     }
 
                     DockerTasks.DockerBuild(s => s
+                        // .SetProgress(ProgressType.plain)
                         .SetFile(service.ServiceDockerFile(ProjectsDirectory))
                         .SetPath(service.ServiceFolder(ProjectsDirectory))
                         .EnableNoCache()
