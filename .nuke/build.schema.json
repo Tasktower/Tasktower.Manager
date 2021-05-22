@@ -18,6 +18,14 @@
           "type": "boolean",
           "description": "Indicates to continue a previously failed build attempt"
         },
+        "GitCloneBranch": {
+          "type": "string",
+          "description": "Git Clone branch (i.e.) master"
+        },
+        "GitCommand": {
+          "type": "string",
+          "description": "Git command. [Example: nuke --git-command 'status'] If quotes are used, they must be in the form: \\\\\". [For example: nuke --git-command 'commit -m \\\\\"Hello world\\\\\"']"
+        },
         "Help": {
           "type": "boolean",
           "description": "Shows the help text for this build assembly"
@@ -70,7 +78,7 @@
             "enum": [
               "Clean",
               "Compile",
-              "GitClone",
+              "GitRun",
               "ListServices",
               "Publish",
               "Restore",
@@ -92,7 +100,7 @@
             "enum": [
               "Clean",
               "Compile",
-              "GitClone",
+              "GitRun",
               "ListServices",
               "Publish",
               "Restore",

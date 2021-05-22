@@ -29,7 +29,7 @@ namespace _build.Scripts
     
         public AbsolutePath ServiceMainProjectFile(AbsolutePath projectsDir)
         {
-            return ServiceMainProjectFolder(projectsDir) / $"{MainProjectFilePath}.csproj" ;
+            return ServiceMainProjectFolder(projectsDir) / $"{MainProject}.csproj" ;
         }
 
     }

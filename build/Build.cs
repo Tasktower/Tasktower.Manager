@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using System.Linq;
 using _build.Scripts;
 using Nuke.Common;
@@ -30,14 +31,20 @@ namespace _build
         readonly Configuration Configuration = IsLocalBuild ? Configuration.Debug : Configuration.Release;
 
         [Solution] readonly Solution Solution;
-    
-        [GitRepository] readonly GitRepository GitRepository;
-
+        
         [PathExecutable] readonly Tool Docker;
-        [PathExecutable] readonly Tool Git;
     
         [Parameter("Service Name chosen for the project, will default to all if not chosen or if it does not exist")] 
         readonly string ServiceName;
+
+        [Parameter("Git command. " +
+                   "[Example: nuke --git-command 'status'] " +
+                   "If quotes are used, they must be in the form: \\\\\". " +
+                   "[For example: nuke --git-command 'commit -m \\\\\"Hello world\\\\\"']")] 
+        readonly string GitCommand = "status";
+        
+        [Parameter("Git Clone branch (i.e.) master")] 
+        readonly string GitCloneBranch = "master";
 
         AbsolutePath ProjectsDirectory = RootDirectory / "..";
         readonly string OutputFolder = "Tasktower";
@@ -128,6 +135,24 @@ namespace _build
                     var version = VersionUtils.GetVersion(s.ServiceFolder(ProjectsDirectory));
                     Console.WriteLine($"{s.ServiceName} version: {version}");
                 }); 
+            });
+        
+        Target GitRun => _ => _
+            .Executes(() =>
+            {
+                if (ServiceChosen())
+                {
+                    GitUtils.RunGitCommandExistsOrClone(GitCommand,  
+                        ServiceAccessUtils.ServiceDictionary[ServiceName], 
+                        ProjectsDirectory, GitCloneBranch);
+                }
+                else
+                {
+                    ServiceAccessUtils.Execute(ServiceAccessUtils.ProjectsList, s =>
+                    {
+                        GitUtils.RunGitCommandExistsOrClone(GitCommand, s, ProjectsDirectory, GitCloneBranch);
+                    });  
+                }
             });
 
     }

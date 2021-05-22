@@ -48,7 +48,7 @@ namespace _build.ConfigScripts
             {
                 ServiceName = "SQLServerDatabase",
                 ServiceFolderName = "Tasktower-SQL-Server-Database",
-                RepositoryUrl = "https://github.com/TasktowerTasktower-SQL-Server-Database.git",
+                RepositoryUrl = "https://github.com/Tasktower/Tasktower-SQL-Server-Database.git",
                 IsDotNetProject = false,
             }
         };
