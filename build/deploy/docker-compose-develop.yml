@@ -10,15 +10,15 @@ services:
       - SA_PASSWORD=P@ssword123
     networks:
       - tasktower
-  tasktower-redis:
-    container_name: "tasktower-redis"
-    image: bitnami/redis:6.0.9
-    ports:
-      - "6379:6379"
-    environment:
-      - REDIS_PASSWORD=password123
-    networks:
-      - tasktower
+#  tasktower-redis:
+#    container_name: "tasktower-redis"
+#    image: bitnami/redis:6.0.9
+#    ports:
+#      - "6379:6379"
+#    environment:
+#      - REDIS_PASSWORD=password123
+#    networks:
+#      - tasktower
   tasktower-project-service-migration:
     container_name: "tasktower-project-service-migration"
     image: tasktower-migrator:latest
@@ -41,7 +41,6 @@ services:
       - Authentication__Authority=https://dev-cl8od7hx.us.auth0.com
       - Authentication__Audience=OSafhsQn1OiTPAsuh79GZY04O7SaIAoe
     depends_on:
-      - tasktower-redis
       - tasktower-sql-server-db
       - tasktower-project-service-migration
     networks:
