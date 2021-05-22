@@ -15,8 +15,8 @@ namespace _build.ConfigScripts
                 SolutionFile = "Tasktower-Migrator.sln",
                 MainProject = "Tasktower.Migrator",
                 MainProjectDirectory = "Tasktower.Migrator",
-                DockerFilePath = "Dockerfile"
-
+                DockerFilePath = "Dockerfile",
+                DockerImageName = "tasktower-migrator"
             },
             new()
             {
@@ -26,7 +26,8 @@ namespace _build.ConfigScripts
                 RepositoryUrl = "https://github.com/Tasktower/Tasktower-Ocelot-Gateway.git",
                 MainProject = "Tasktower.OcelotGateway",
                 MainProjectDirectory = "Tasktower.OcelotGateway",
-                DockerFilePath = "Dockerfile"
+                DockerFilePath = "Dockerfile",
+                DockerImageName = "tasktower-ocelot-gateway"
             },
             new()
             {
@@ -36,7 +37,8 @@ namespace _build.ConfigScripts
                 SolutionFile = "Tasktower-Project-Service.sln",
                 MainProject = "Tasktower.ProjectService",
                 MainProjectDirectory = "Tasktower.ProjectService",
-                DockerFilePath = "Dockerfile"
+                DockerFilePath = "Dockerfile",
+                DockerImageName = "tasktower-project-service"
             },
             new()
             {
@@ -46,7 +48,8 @@ namespace _build.ConfigScripts
                 SolutionFile = "Tasktower-UI-Service.sln",
                 MainProject = "Tasktower.UIService",
                 MainProjectDirectory = "Tasktower.UIService",
-                DockerFilePath = "Dockerfile"
+                DockerFilePath = "Dockerfile",
+                DockerImageName = "tasktower-ui-service"
             },
             new()
             {
@@ -55,7 +58,8 @@ namespace _build.ConfigScripts
                 RepositoryUrl = "https://github.com/Tasktower/Tasktower-SQL-Server-Database.git",
                 MainProject = "Tasktower.SQLServerDatabase",
                 MainProjectDirectory = ".",
-                DockerFilePath = "Dockerfile"
+                DockerFilePath = "Dockerfile",
+                DockerImageName = "tasktower-sql-server-db"
             }
         };
     }

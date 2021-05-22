@@ -162,6 +162,7 @@ namespace _build
             {
                 ServiceAccessUtils.Execute(ChosenServiceDefinitions, service =>
                 {
+                    Console.WriteLine("Building " + service.ServiceName);
                     ISet<string> tags = new HashSet<string>();
                     tags.Add(VersionUtils.GetVersion(service.ServiceFolder(ProjectsDirectory)));
                     if (DockerBuildLatest)
@@ -170,9 +171,10 @@ namespace _build
                     }
 
                     DockerTasks.DockerBuild(s => s
-                        .SetFile(service.ServiceFolder(ProjectsDirectory))
+                        .SetFile(service.ServiceDockerFile(ProjectsDirectory))
+                        .SetPath(service.ServiceFolder(ProjectsDirectory))
                         .EnableNoCache()
-                        .SetTag(tags)
+                        .SetTag(tags.Select(tag => $"{service.DockerImageName}:{tag}"))
                     );
                 });
             });

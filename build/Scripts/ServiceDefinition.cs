@@ -11,6 +11,7 @@ namespace _build.Scripts
         public string MainProject { get; set; }
         public string MainProjectDirectory { get; set; }
         
+        public string DockerImageName { get; set; }
         public string DockerFilePath { get; set; }
         public AbsolutePath ServiceFolder(AbsolutePath projectsDir)
         {
