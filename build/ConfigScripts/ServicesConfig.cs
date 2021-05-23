@@ -42,17 +42,6 @@ namespace _build.ConfigScripts
             },
             new()
             {
-                ServiceName = "AuthClientService",
-                ServiceFolderName = "Tasktower-Auth-Client-Service",
-                RepositoryUrl = "https://github.com/Tasktower/Tasktower-Auth-Client-Service.git",
-                SolutionFile = "Tasktower-Auth-Client-Service.sln",
-                MainProject = "Tasktower.AuthClientService",
-                MainProjectDirectory = "Tasktower.AuthClientService",
-                DockerFilePath = "Dockerfile",
-                DockerImageName = "taskmaster39/tasktower-auth-client-service"
-            },
-            new()
-            {
                 ServiceName = "UIService",
                 ServiceFolderName = "Tasktower-UI-Service",
                 RepositoryUrl = "https://github.com/Tasktower/Tasktower-UI-Service.git",

@@ -19,10 +19,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tasktower.UIService", "..\T
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tasktower.SQLServerDatabase", "..\Tasktower-SQL-Server-Database\Tasktower.SQLServerDatabase.csproj", "{DD1748F8-185C-4BF3-8E77-54859147AF68}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tasktower.AuthClientService", "..\Tasktower-Auth-Client-Service\Tasktower.AuthClientService\Tasktower.AuthClientService.csproj", "{427B0000-7F5F-41B0-A037-EAB41FC24F89}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tasktower.AuthClientService.Tests", "..\Tasktower-Auth-Client-Service\Tasktower.AuthClientService.Tests\Tasktower.AuthClientService.Tests.csproj", "{053199C8-7072-48F5-84E9-62CB351DEF91}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -55,14 +51,6 @@ Global
 		{DD1748F8-185C-4BF3-8E77-54859147AF68}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DD1748F8-185C-4BF3-8E77-54859147AF68}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DD1748F8-185C-4BF3-8E77-54859147AF68}.Release|Any CPU.Build.0 = Release|Any CPU
-		{427B0000-7F5F-41B0-A037-EAB41FC24F89}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{427B0000-7F5F-41B0-A037-EAB41FC24F89}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{427B0000-7F5F-41B0-A037-EAB41FC24F89}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{427B0000-7F5F-41B0-A037-EAB41FC24F89}.Release|Any CPU.Build.0 = Release|Any CPU
-		{053199C8-7072-48F5-84E9-62CB351DEF91}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{053199C8-7072-48F5-84E9-62CB351DEF91}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{053199C8-7072-48F5-84E9-62CB351DEF91}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{053199C8-7072-48F5-84E9-62CB351DEF91}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -74,8 +62,6 @@ Global
 		{003FF7D6-8AAF-41C2-BECE-636974A460DC} = {69908B12-4829-403F-8567-5B7628DA1196}
 		{CE3F8DF0-595F-4DFD-B71E-3A4667D55B55} = {69908B12-4829-403F-8567-5B7628DA1196}
 		{DD1748F8-185C-4BF3-8E77-54859147AF68} = {69908B12-4829-403F-8567-5B7628DA1196}
-		{427B0000-7F5F-41B0-A037-EAB41FC24F89} = {69908B12-4829-403F-8567-5B7628DA1196}
-		{053199C8-7072-48F5-84E9-62CB351DEF91} = {69908B12-4829-403F-8567-5B7628DA1196}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E8D83CC4-5896-4B85-B28A-E8D9ADF4C0BE}

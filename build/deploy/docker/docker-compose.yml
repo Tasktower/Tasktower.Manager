@@ -35,11 +35,11 @@ services:
     image: taskmaster39/tasktower-project-service:latest
     ports:
       - "8082:80"
+    env_file:
+      - ./env/auth-openid.env
     environment:
       - ASPNETCORE_ENVIRONMENT=development
       - ConnectionStrings__SQLServerBoardDB=Data Source=tasktower-sql-server-db;Server=tasktower-sql-server-db;User ID=sa;Password=P@ssword123;Database=project;
-      - Authentication__Openid__Authority=https://dev-cl8od7hx.us.auth0.com
-      - Authentication__Openid__Audience=OSafhsQn1OiTPAsuh79GZY04O7SaIAoe
     depends_on:
       - tasktower-sql-server-db
       - tasktower-project-service-migration
@@ -57,10 +57,8 @@ services:
   tasktower-ocelot-gateway:
     container_name: "tasktower-ocelot-gateway"
     image: taskmaster39/tasktower-ocelot-gateway:latest
-    depends_on:
-      - tasktower-ui-service
-      - tasktower-project-service
-#    environment:
+    env_file:
+      - ./env/auth-openid.env
     ports:
       - "9090:80"
     networks:
