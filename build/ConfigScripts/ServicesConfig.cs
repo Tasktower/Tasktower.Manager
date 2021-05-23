@@ -16,7 +16,7 @@ namespace _build.ConfigScripts
                 MainProject = "Tasktower.Migrator",
                 MainProjectDirectory = "Tasktower.Migrator",
                 DockerFilePath = "Dockerfile",
-                DockerImageName = "tasktower-migrator"
+                DockerImageName = "taskmaster39/tasktower-migrator"
             },
             new()
             {
@@ -27,7 +27,7 @@ namespace _build.ConfigScripts
                 MainProject = "Tasktower.OcelotGateway",
                 MainProjectDirectory = "Tasktower.OcelotGateway",
                 DockerFilePath = "Dockerfile",
-                DockerImageName = "tasktower-ocelot-gateway"
+                DockerImageName = "taskmaster39/tasktower-ocelot-gateway"
             },
             new()
             {
@@ -38,7 +38,7 @@ namespace _build.ConfigScripts
                 MainProject = "Tasktower.ProjectService",
                 MainProjectDirectory = "Tasktower.ProjectService",
                 DockerFilePath = "Dockerfile",
-                DockerImageName = "tasktower-project-service"
+                DockerImageName = "taskmaster39/tasktower-project-service"
             },
             new()
             {
@@ -49,7 +49,7 @@ namespace _build.ConfigScripts
                 MainProject = "Tasktower.UIService",
                 MainProjectDirectory = "Tasktower.UIService",
                 DockerFilePath = "Dockerfile",
-                DockerImageName = "tasktower-ui-service"
+                DockerImageName = "taskmaster39/tasktower-ui-service"
             },
             new()
             {
@@ -59,7 +59,7 @@ namespace _build.ConfigScripts
                 MainProject = "Tasktower.SQLServerDatabase",
                 MainProjectDirectory = ".",
                 DockerFilePath = "Dockerfile",
-                DockerImageName = "tasktower-sql-server-db"
+                DockerImageName = "taskmaster39/tasktower-sql-server"
             }
         };
     }

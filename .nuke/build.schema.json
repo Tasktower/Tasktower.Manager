@@ -22,6 +22,22 @@
           "type": "boolean",
           "description": "Docker build sets tag as latest"
         },
+        "DockerPassword": {
+          "type": "string",
+          "description": "Docker password"
+        },
+        "DockerPushLatest": {
+          "type": "boolean",
+          "description": "Docker push latest tag"
+        },
+        "DockerRegistryServer": {
+          "type": "string",
+          "description": "Docker registry server"
+        },
+        "DockerUsername": {
+          "type": "string",
+          "description": "Docker username"
+        },
         "GitCloneBranch": {
           "type": "string",
           "description": "Git Clone branch (i.e.) master"
@@ -81,6 +97,10 @@
             "type": "string",
             "enum": [
               "DockerBuild",
+              "DockerPushRaw",
+              "DockerPushSignedIn",
+              "DockerSignIn",
+              "DockerSignOut",
               "DotnetClean",
               "DotnetCompile",
               "DotnetPublish",
@@ -104,6 +124,10 @@
             "type": "string",
             "enum": [
               "DockerBuild",
+              "DockerPushRaw",
+              "DockerPushSignedIn",
+              "DockerSignIn",
+              "DockerSignOut",
               "DotnetClean",
               "DotnetCompile",
               "DotnetPublish",

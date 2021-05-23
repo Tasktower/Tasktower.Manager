@@ -49,6 +49,18 @@ namespace _build
 
         [Parameter("Docker build sets tag as latest")]
         readonly bool DockerBuildLatest = true;
+        
+        [Parameter("Docker registry server")] 
+        readonly string DockerRegistryServer;
+
+        [Parameter("Docker username")] 
+        readonly string DockerUsername;
+        
+        [Parameter("Docker password")] 
+        readonly string DockerPassword;
+        
+        [Parameter("Docker push latest tag")]
+        readonly bool DockerPushLatest = false;
 
         AbsolutePath ProjectsDirectory = RootDirectory / "..";
 
@@ -168,7 +180,6 @@ namespace _build
                     }
 
                     DockerTasks.DockerBuild(s => s
-                        // .SetProgress(ProgressType.plain)
                         .SetFile(service.ServiceDockerFile(ProjectsDirectory))
                         .SetPath(service.ServiceFolder(ProjectsDirectory))
                         .EnableNoCache()
@@ -176,6 +187,43 @@ namespace _build
                     );
                 });
             });
+        
+        Target DockerSignOut => _ => _
+            .Executes(() =>
+            {
+                DockerTasks.DockerLogout(s => s.SetServer(DockerRegistryServer));
+            });
+        
+        Target DockerSignIn => _ => _
+            .DependsOn(DockerSignOut)
+            .Requires(() => DockerUsername != null && DockerPassword != null)
+            .Executes(() =>
+            {
+                DockerTasks.DockerLogin(s => s
+                    .SetUsername(DockerUsername)
+                    .SetPassword(DockerPassword)
+                    .SetServer(DockerRegistryServer));
+            });
+
+        Target DockerPushRaw => _ => _
+            .Executes(() =>
+            {
+                ServiceAccessUtils.Execute(ChosenServiceDefinitions, service =>
+                {
+                    DockerTasks.DockerPush(s => s
+                        .SetName($"{service.DockerImageName}:" +
+                                 $"{VersionUtils.GetVersion(service.ServiceFolder(ProjectsDirectory))}"));
+                    if (DockerPushLatest)
+                    {
+                        DockerTasks.DockerPush(s => s
+                            .SetName($"{service.DockerImageName}:latest"));
+                    }
+                });
+            });
+
+        Target DockerPushSignedIn => _ => _
+            .DependsOn(DockerSignIn)
+            .Inherit(DockerPushRaw);
 
     }
 }

@@ -2,7 +2,7 @@ version: "3.9"
 services:
   tasktower-sql-server-db:
     container_name: "tasktower-sql-server-db"
-    image: tasktower-sql-server-db:latest
+    image: taskmaster39/tasktower-sql-server:latest
     ports:
       - "1433:1433"
     environment:
@@ -21,7 +21,7 @@ services:
 #      - tasktower
   tasktower-project-service-migration:
     container_name: "tasktower-project-service-migration"
-    image: tasktower-migrator:latest
+    image: tasktower/tasktower-migrator:latest
     environment:
       - CONNECTION_STRING= Data Source=tasktower-sql-server-db;Server=tasktower-sql-server-db;User ID=sa;Password=P@ssword123;Database=project;
       - SERVICE=Board
@@ -32,7 +32,7 @@ services:
       - tasktower
   tasktower-project-service:
     container_name: "tasktower-project-service"
-    image: tasktower-project-service:latest
+    image: taskmaster39/tasktower-project-service:latest
     ports:
       - "8082:80"
     environment:
@@ -47,7 +47,7 @@ services:
       - tasktower
   tasktower-ui-service:
     container_name: "tasktower-ui-service"
-    image: tasktower-ui-service:latest
+    image: taskmaster39/tasktower-ui-service:latest
     ports:
       - "8081:80"
     networks:
@@ -56,7 +56,7 @@ services:
       - Render__Cache=false
   tasktower-ocelot-gateway:
     container_name: "tasktower-ocelot-gateway"
-    image: tasktower-ocelot-gateway:latest
+    image: taskmaster39/tasktower-ocelot-gateway:latest
     depends_on:
       - tasktower-ui-service
       - tasktower-project-service
