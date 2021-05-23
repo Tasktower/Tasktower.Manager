@@ -189,12 +189,14 @@ namespace _build
             });
         
         Target DockerSignOut => _ => _
+            .Description("Log out of a docker registry")
             .Executes(() =>
             {
                 DockerTasks.DockerLogout(s => s.SetServer(DockerRegistryServer));
             });
         
         Target DockerSignIn => _ => _
+            .Description("Log in to a docker registry")
             .DependsOn(DockerSignOut)
             .Requires(() => DockerUsername != null && DockerPassword != null)
             .Executes(() =>
@@ -206,6 +208,7 @@ namespace _build
             });
 
         Target DockerPushRaw => _ => _
+            .Description("Push docker image without logging in")
             .Executes(() =>
             {
                 ServiceAccessUtils.Execute(ChosenServiceDefinitions, service =>
@@ -222,6 +225,7 @@ namespace _build
             });
 
         Target DockerPushSignedIn => _ => _
+            .Description("Login to docker, then push the image to a registry")
             .DependsOn(DockerSignIn)
             .Inherit(DockerPushRaw);
 
