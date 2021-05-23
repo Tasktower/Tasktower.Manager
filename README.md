@@ -17,7 +17,7 @@ It offers uses such as git managment, running builds and tests, interfacing with
 as well as handling deployment.
 
 To install nuke, please go to Tasktower-Manager root directory in your bash shell and run:
-```shell
+```bash
 chmod +x install.sh 
 sh ./install.sh
 ```
@@ -44,12 +44,12 @@ you installed will pop up.
 Here is some more commands to get you more acquainted with nuke.
 
 How you can create a new branch:
-```shell
+```bash
 nuke GitRun --git-command 'checkout -b new_branch'
 ```
 
 How you can stage files for a specific service found in ListServices:
-```shell
+```bash
 nuke GitRun --git-command 'add .' --service-name <some_service>
 ```
 
@@ -61,22 +61,35 @@ to one service, you need to specify it. Each service is it's own git repository.
 To commit, or do any other commands with double quotes, you need to escape them from `"` to `//"`.
 For example:
 
-```shell
+```bash
 nuke GitRun --git-command 'commit -m \\"hello commit message\\"' --service-name <some_service>
 ```
 
 ### - Manage container deployments
 
-Next is to build your docker images and run them locally. 
+Next is to run your docker images.
 
-To build all of your custom docker images, you first need all of your 
+If you just wish to run your docker image, do the following:
+```bash
+cd deploy
+docker-compose -f docker-compose-develop.yml -p tasktower up -d
+```
+All of the images used exist in a docker registry so you don't need to build them
+yourself usually. However when updating, you will need to delete all of your
+images and run docker compose again.
+
+_Note: Keep in mind that docker compose may fail because the databases initialized yet in sql server,
+if that is the case, just rerun the previous docker command when the databases are initialized._
+
+To build all your docker images locally, you first need all of your 
 projects installed and set up. 
 
 Refer to the the previous section in git managment for more details.
 
 To start building all of your docker images, you first need to publish 
 your projects:
-```shell
+
+```bash
 nuke DotnetPublish
 ```
 
@@ -84,17 +97,8 @@ _Note: If you are using windows, make sure the shell and sql files
 in Migrator and SQLServerDatabase are using LF line endings and not CLRF. 
 If they don't, the docker images you built with them won't work._
 
-Once your images are up and running, you need to execute docker-compose
-to start your containers. Run 
-```shell
-cd deploy
-docker-compose -f docker-compose-develop.yml -p tasktower up -d
-```
-
-This will start all of your containers.
-
-Keep in mind that docker compose may fail because the databases initialized yet in sql server,
-if that is the case, just rerun the previous docker command when the databases are initialized.
+Once your images are up and running, can execute docker-compose
+to start your containers. Run
 
 You can use Azure Data Studio or SQL Server Managment Studio to check you sql server instance.
 
