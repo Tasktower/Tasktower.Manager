@@ -71,8 +71,8 @@ Next is to run your docker images.
 
 If you just wish to run your docker image, do the following:
 ```bash
-cd deploy
-docker-compose -f docker-compose-develop.yml -p tasktower up -d
+cd build/deploy/docker
+docker-compose -p tasktower up -d
 ```
 All of the images used exist in a docker registry so you don't need to build them
 yourself usually. However when updating, you will need to delete all of your
