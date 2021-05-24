@@ -59,8 +59,15 @@ services:
     image: taskmaster39/tasktower-ocelot-gateway:latest
     env_file:
       - ./env/auth-openid.env
+    environment:
+      - ASPNETCORE_URLS=https://+:443;http://+:80
+#      - ASPNETCORE_HTTPS_PORT=443
+      - ASPNETCORE_Kestrel__Certificates__Default__Password=password
+      - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx
+    volumes:
+      - ./volumes/https:/https/ 
     ports:
-      - "9090:80"
+      - "9090:443"
     networks:
       - tasktower
 networks:

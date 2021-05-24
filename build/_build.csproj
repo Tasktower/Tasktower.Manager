@@ -17,4 +17,8 @@
     <PackageDownload Include="Nuke.Docker" Version="[0.4.0]" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="deploy\docker\volumes\https" />
+  </ItemGroup>
+
 </Project>
