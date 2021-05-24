@@ -18,7 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="deploy\docker\volumes\https" />
+    <Folder Include="deploy\docker\volumes" />
   </ItemGroup>
 
 </Project>

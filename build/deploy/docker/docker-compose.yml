@@ -61,9 +61,8 @@ services:
       - ./env/auth-openid.env
     environment:
       - ASPNETCORE_URLS=https://+:443;http://+:80
-#      - ASPNETCORE_HTTPS_PORT=443
-      - ASPNETCORE_Kestrel__Certificates__Default__Password=password
-      - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx
+      - ASPNETCORE_Kestrel__Certificates__Default__Password=crypticpassword
+      - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/tasktower.pfx
     volumes:
       - ./volumes/https:/https/ 
     ports:
