@@ -10,15 +10,15 @@ services:
       - SA_PASSWORD=P@ssword123
     networks:
       - tasktower
-#  tasktower-redis:
-#    container_name: "tasktower-redis"
-#    image: bitnami/redis:6.0.9
-#    ports:
-#      - "6379:6379"
-#    environment:
-#      - REDIS_PASSWORD=password123
-#    networks:
-#      - tasktower
+  tasktower-redis:
+    container_name: "tasktower-redis"
+    image: bitnami/redis:6.0.9
+    ports:
+      - "6379:6379"
+    environment:
+      - REDIS_PASSWORD=password123
+    networks:
+      - tasktower
   tasktower-project-service-migration:
     container_name: "tasktower-project-service-migration"
     image: taskmaster39/tasktower-migrator:latest
@@ -60,6 +60,7 @@ services:
     env_file:
       - ./env/auth-openid.env
     environment:
+      - Cors__Enable=true
       - ASPNETCORE_URLS=https://+:443;http://+:80
       - ASPNETCORE_Kestrel__Certificates__Default__Password=crypticpassword
       - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/tasktower.pfx
