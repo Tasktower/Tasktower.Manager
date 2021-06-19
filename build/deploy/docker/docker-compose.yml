@@ -79,7 +79,7 @@ services:
       - ./env/auth-openid.env
     environment:
       - Cors__Enable=false
-      - GatewayInfo__WebApp=true
+      - GatewayInfo__WebApp=false
       - ASPNETCORE_URLS=https://+:443;http://+:80
       - ASPNETCORE_Kestrel__Certificates__Default__Password=crypticpassword
       - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/tasktower.pfx
