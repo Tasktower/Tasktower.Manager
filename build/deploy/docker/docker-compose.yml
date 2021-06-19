@@ -61,6 +61,7 @@ services:
       - ./env/auth-openid.env
     environment:
       - Cors__Enable=true
+      - Cors__Hosts=http://localhost:5000,https://localhost:5001,http://localhost:3000,https://localhost:3000
       - GatewayInfo__WebApp=true
       - ASPNETCORE_URLS=https://+:443;http://+:80
       - ASPNETCORE_Kestrel__Certificates__Default__Password=crypticpassword

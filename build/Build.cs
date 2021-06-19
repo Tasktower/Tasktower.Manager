@@ -28,13 +28,13 @@ namespace _build
 
         public static int Main () => Execute<Build>(x => x.DotnetCompile);
 
-        [Parameter("Configuration to build - Default is 'Debug' (local) or 'Release' (server)")]
-        readonly Configuration Configuration = IsLocalBuild ? Configuration.Debug : Configuration.Release;
-
         [Solution] readonly Solution Solution;
         
         [PathExecutable] readonly Tool Docker;
-    
+        
+        [Parameter("Configuration to build - Default is 'Debug' (local) or 'Release' (server)")]
+        readonly Configuration Configuration = IsLocalBuild ? Configuration.Debug : Configuration.Release;
+
         [Parameter("Service Name chosen for the project, will default to all if not chosen or if it does not exist")] 
         readonly string ServiceName;
 
