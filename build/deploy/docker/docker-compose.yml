@@ -10,15 +10,15 @@ services:
       - SA_PASSWORD=P@ssword123
     networks:
       - tasktower
-  tasktower-redis:
-    container_name: "tasktower-redis"
-    image: bitnami/redis:6.0.9
-    ports:
-      - "6379:6379"
-    environment:
-      - REDIS_PASSWORD=password123
-    networks:
-      - tasktower
+#  tasktower-redis:
+#    container_name: "tasktower-redis"
+#    image: bitnami/redis:6.0.9
+#    ports:
+#      - "6379:6379"
+#    environment:
+#      - REDIS_PASSWORD=password123
+#    networks:
+#      - tasktower
   tasktower-project-service-migration:
     container_name: "tasktower-project-service-migration"
     image: taskmaster39/tasktower-migrator:latest
@@ -52,22 +52,40 @@ services:
       - "8081:80"
     networks:
       - tasktower
-    environment:
-      - Render__Cache=false
-  tasktower-ocelot-gateway:
-    container_name: "tasktower-ocelot-gateway"
+  tasktower-webapp-gateway:
+    container_name: "tasktower-webapp-gateway"
     image: taskmaster39/tasktower-ocelot-gateway:latest
+    ports:
+      - "9090:443"
     env_file:
       - ./env/auth-openid.env
     environment:
       - Cors__Enable=true
+      - GatewayInfo__WebApp=true
       - ASPNETCORE_URLS=https://+:443;http://+:80
       - ASPNETCORE_Kestrel__Certificates__Default__Password=crypticpassword
       - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/tasktower.pfx
     volumes:
-      - ./volumes/https:/https/ 
+      - ./volumes/https:/https/
+      - ./volumes/https:/usr/share/ca-certificates
+    networks:
+      - tasktower
+  tasktower-native-gateway:
+    container_name: "tasktower-native-gateway"
+    image: taskmaster39/tasktower-ocelot-gateway:latest
     ports:
-      - "9090:443"
+      - "9091:443"
+    env_file:
+      - ./env/auth-openid.env
+    environment:
+      - Cors__Enable=false
+      - GatewayInfo__WebApp=true
+      - ASPNETCORE_URLS=https://+:443;http://+:80
+      - ASPNETCORE_Kestrel__Certificates__Default__Password=crypticpassword
+      - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/tasktower.pfx
+    volumes:
+      - ./volumes/https:/https/
+      - ./volumes/https:/usr/share/ca-certificates
     networks:
       - tasktower
 networks:
