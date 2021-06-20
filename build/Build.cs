@@ -95,14 +95,19 @@ namespace _build
         /// </summary>
         IEnumerable<ServiceDefinition> ChosenServiceDefinitions => ServiceChosen? 
             new[]{ ServiceAccessUtils.ServiceDictionary[ServiceName] }: 
-            ServiceAccessUtils.ServicesList
-                .Where(s => Directory.Exists(s.FolderPath(ProjectsDirectory)));
+            ServiceAccessUtils.ServicesList;
+        
+        /// <summary>
+        /// Services chosen for Nuke to use
+        /// </summary>
+        IEnumerable<ServiceDefinition> ChosenExistingServiceDefinitions => 
+            ChosenServiceDefinitions.Where(s => Directory.Exists(s.FolderPath(ProjectsDirectory)));
         
         /// <summary>
         /// All chosen services that use docker
         /// </summary>
         IEnumerable<ServiceDefinition> ChosenDockerServices => 
-            ChosenServiceDefinitions.Where(d => d.IsDockerService);
+            ChosenExistingServiceDefinitions.Where(d => d.IsDockerService);
 
 
         Target ListServices => _ => _
@@ -152,7 +157,7 @@ namespace _build
             .DependsOn(DotnetCompile)
             .Executes(() =>
             {
-                ServiceAccessUtils.Execute(ChosenServiceDefinitions, service =>
+                ServiceAccessUtils.Execute(ChosenExistingServiceDefinitions, service =>
                 {
                     DotNetPublish(s => s
                         .SetConfiguration(Configuration)
@@ -169,7 +174,7 @@ namespace _build
             .Description("Print version")
             .Executes(() =>
             {
-                ServiceAccessUtils.Execute(ChosenServiceDefinitions, s =>
+                ServiceAccessUtils.Execute(ChosenExistingServiceDefinitions, s =>
                 {
                     var version = VersionUtils.GetVersion(s.FolderPath(ProjectsDirectory));
                     Console.WriteLine($"{s.ServiceName} version: {version}");
