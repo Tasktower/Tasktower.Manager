@@ -62,7 +62,7 @@ namespace _build
         [Parameter("Docker push latest tag")]
         readonly bool DockerPushLatest = false;
 
-        AbsolutePath ProjectsDirectory = RootDirectory / "..";
+        readonly AbsolutePath ProjectsDirectory = RootDirectory / "..";
 
         // Service chosen flags
         private bool ServiceChosen => ServiceName != null; 
