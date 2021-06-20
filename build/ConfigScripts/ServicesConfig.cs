@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using _build.Scripts;
+using _build.Scripts.Models;
 
 namespace _build.ConfigScripts
 {
@@ -16,7 +17,8 @@ namespace _build.ConfigScripts
                 MainProject = "Tasktower.Migrator",
                 MainProjectDirectory = "Tasktower.Migrator",
                 DockerFilePath = "Dockerfile",
-                DockerImageName = "taskmaster39/tasktower-migrator"
+                DockerImageName = "taskmaster39/tasktower-migrator",
+                ServiceType = ServiceType.ConsoleApp
             },
             new()
             {
@@ -27,7 +29,8 @@ namespace _build.ConfigScripts
                 MainProject = "Tasktower.OcelotGateway",
                 MainProjectDirectory = "Tasktower.OcelotGateway",
                 DockerFilePath = "Dockerfile",
-                DockerImageName = "taskmaster39/tasktower-ocelot-gateway"
+                DockerImageName = "taskmaster39/tasktower-ocelot-gateway",
+                ServiceType = ServiceType.WebApi
             },
             new()
             {
@@ -38,7 +41,8 @@ namespace _build.ConfigScripts
                 MainProject = "Tasktower.ProjectService",
                 MainProjectDirectory = "Tasktower.ProjectService",
                 DockerFilePath = "Dockerfile",
-                DockerImageName = "taskmaster39/tasktower-project-service"
+                DockerImageName = "taskmaster39/tasktower-project-service",
+                ServiceType = ServiceType.WebApi
             },
             new()
             {
@@ -49,7 +53,8 @@ namespace _build.ConfigScripts
                 MainProject = "Tasktower.UserService",
                 MainProjectDirectory = "Tasktower.UserService",
                 DockerFilePath = "Dockerfile",
-                DockerImageName = "taskmaster39/tasktower-user-service"
+                DockerImageName = "taskmaster39/tasktower-user-service",
+                ServiceType = ServiceType.WebApi
             },
             new()
             {
@@ -60,7 +65,18 @@ namespace _build.ConfigScripts
                 MainProject = "Tasktower.UIService",
                 MainProjectDirectory = "Tasktower.UIService",
                 DockerFilePath = "Dockerfile",
-                DockerImageName = "taskmaster39/tasktower-ui-service"
+                DockerImageName = "taskmaster39/tasktower-ui-service",
+                ServiceType = ServiceType.WebUi
+            },
+            new()
+            {
+                ServiceName = "LibAspnetcore",
+                ServiceFolderName = "Tasktower-Lib-Aspnetcore",
+                RepositoryUrl = "https://github.com/Tasktower/Tasktower-Lib-Aspnetcore.git",
+                SolutionFile = "Tasktower-Lib-Aspnetcore.sln",
+                MainProject = "Tasktower.Lib.Aspnetcore",
+                MainProjectDirectory = "Tasktower.Lib.Aspnetcore",
+                ServiceType = ServiceType.NetLibrary
             },
             new()
             {
@@ -70,7 +86,8 @@ namespace _build.ConfigScripts
                 MainProject = "Tasktower.SQLServerDatabase",
                 MainProjectDirectory = ".",
                 DockerFilePath = "Dockerfile",
-                DockerImageName = "taskmaster39/tasktower-sql-server"
+                DockerImageName = "taskmaster39/tasktower-sql-server",
+                ServiceType = ServiceType.DockerBuilder
             }
         };
     }

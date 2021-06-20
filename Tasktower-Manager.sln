@@ -23,6 +23,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tasktower.UserService", "..
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tasktower.UserService.Tests", "..\Tasktower-User-Service\Tasktower.UserService.Tests\Tasktower.UserService.Tests.csproj", "{DFFCF147-26C9-48A6-A02B-07320A4AF465}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tasktower.Lib.Aspnetcore", "..\Tasktower-Lib-Aspnetcore\Tasktower.Lib.Aspnetcore\Tasktower.Lib.Aspnetcore.csproj", "{B989ACE7-D637-453F-A6E2-A33D1CC7942D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tasktower.Lib.Aspnetcore.Tests", "..\Tasktower-Lib-Aspnetcore\Tasktower.Lib.Aspnetcore.Tests\Tasktower.Lib.Aspnetcore.Tests.csproj", "{3F3B5B8F-8B92-48C6-ACDA-1818DA79DEE2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +67,14 @@ Global
 		{DFFCF147-26C9-48A6-A02B-07320A4AF465}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DFFCF147-26C9-48A6-A02B-07320A4AF465}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DFFCF147-26C9-48A6-A02B-07320A4AF465}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B989ACE7-D637-453F-A6E2-A33D1CC7942D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B989ACE7-D637-453F-A6E2-A33D1CC7942D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B989ACE7-D637-453F-A6E2-A33D1CC7942D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B989ACE7-D637-453F-A6E2-A33D1CC7942D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3F3B5B8F-8B92-48C6-ACDA-1818DA79DEE2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3F3B5B8F-8B92-48C6-ACDA-1818DA79DEE2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3F3B5B8F-8B92-48C6-ACDA-1818DA79DEE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3F3B5B8F-8B92-48C6-ACDA-1818DA79DEE2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -76,6 +88,8 @@ Global
 		{DD1748F8-185C-4BF3-8E77-54859147AF68} = {69908B12-4829-403F-8567-5B7628DA1196}
 		{1C6A2295-26C6-4A63-8999-59A8657185FB} = {69908B12-4829-403F-8567-5B7628DA1196}
 		{DFFCF147-26C9-48A6-A02B-07320A4AF465} = {69908B12-4829-403F-8567-5B7628DA1196}
+		{B989ACE7-D637-453F-A6E2-A33D1CC7942D} = {69908B12-4829-403F-8567-5B7628DA1196}
+		{3F3B5B8F-8B92-48C6-ACDA-1818DA79DEE2} = {69908B12-4829-403F-8567-5B7628DA1196}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E8D83CC4-5896-4B85-B28A-E8D9ADF4C0BE}

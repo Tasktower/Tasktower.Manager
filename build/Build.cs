@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using _build.ConfigScripts;
 using _build.Scripts;
+using _build.Scripts.Models;
 using Nuke.Common;
 using Nuke.Common.CI;
 using Nuke.Common.Execution;
@@ -65,19 +66,43 @@ namespace _build
         readonly AbsolutePath ProjectsDirectory = RootDirectory / "..";
 
         // Service chosen flags
-        private bool ServiceChosen => ServiceName != null; 
-        private bool ChosenServiceExists => ServiceChosen && ServiceAccessUtils.ServiceExists(ServiceName);
+        
+        /// <summary>
+        /// If a specific service is specified 
+        /// </summary>
+        bool ServiceChosen => ServiceName != null;
+        
+        /// <summary>
+        /// If a specific service is specified and that service exists in the configuration
+        /// </summary>
+        bool ChosenServiceExists => ServiceChosen && ServiceAccessUtils.ServiceExists(ServiceName);
         
         // File/Folder path accessors
-        private string ChosenServiceSolutionFileOrFromManager => ChosenServiceExists
-            ? ServiceAccessUtils.ServiceDictionary[ServiceName].ServiceSolutionFile(ProjectsDirectory)
+        
+        /// <summary>
+        /// Solution file chosen to run based on if a service is chosen.
+        /// If no service is chosen, the solution file from manager is used.
+        /// Otherwise, the solution file for the specified service is used.
+        /// </summary>
+        string ChosenSolutionFile => ChosenServiceExists
+            ? ServiceAccessUtils.ServiceDictionary[ServiceName].SolutionFilePath(ProjectsDirectory)
             : Solution;
         
-        // Chosen services
-        private IEnumerable<ServiceDefinition> ChosenServiceDefinitions => ServiceChosen? 
+        // Service Lists
+        
+        /// <summary>
+        /// Services chosen for Nuke to use
+        /// </summary>
+        IEnumerable<ServiceDefinition> ChosenServiceDefinitions => ServiceChosen? 
             new[]{ ServiceAccessUtils.ServiceDictionary[ServiceName] }: 
             ServiceAccessUtils.ServicesList
-                .Where(s => Directory.Exists(s.ServiceFolder(ProjectsDirectory)));
+                .Where(s => Directory.Exists(s.FolderPath(ProjectsDirectory)));
+        
+        /// <summary>
+        /// All chosen services that use docker
+        /// </summary>
+        IEnumerable<ServiceDefinition> ChosenDockerServices => 
+            ChosenServiceDefinitions.Where(d => d.IsDockerService);
 
 
         Target ListServices => _ => _
@@ -101,7 +126,7 @@ namespace _build
             .Executes(() =>
             {
                 DotNetRestore(s => s
-                    .SetProjectFile(ChosenServiceSolutionFileOrFromManager));
+                    .SetProjectFile(ChosenSolutionFile));
             });
         Target DotnetCompile => _ => _
             .Description("Compile .net service(s)")
@@ -109,7 +134,7 @@ namespace _build
             .Executes(() =>
             {
                 DotNetBuild(s => s
-                    .SetProjectFile(ChosenServiceSolutionFileOrFromManager)
+                    .SetProjectFile(ChosenSolutionFile)
                     .SetConfiguration(Configuration)
                     .EnableNoRestore());
             });
@@ -119,7 +144,7 @@ namespace _build
             .Executes(() =>
             {
                 DotNetTest(s => s
-                    .SetProjectFile(ChosenServiceSolutionFileOrFromManager));
+                    .SetProjectFile(ChosenSolutionFile));
             });
 
         Target DotnetPublish => _ => _
@@ -131,8 +156,8 @@ namespace _build
                 {
                     DotNetPublish(s => s
                         .SetConfiguration(Configuration)
-                        .SetOutput(service.ServiceMainProjectFolder(ProjectsDirectory) / BuildConfig.OutputFolder)
-                        .SetProject(service.ServiceMainProjectFile(ProjectsDirectory)));
+                        .SetOutput(service.MainProjectFolderPath(ProjectsDirectory) / BuildConfig.OutputFolder)
+                        .SetProject(service.MainProjectFilePath(ProjectsDirectory)));
                 });
             });
 
@@ -146,7 +171,7 @@ namespace _build
             {
                 ServiceAccessUtils.Execute(ChosenServiceDefinitions, s =>
                 {
-                    var version = VersionUtils.GetVersion(s.ServiceFolder(ProjectsDirectory));
+                    var version = VersionUtils.GetVersion(s.FolderPath(ProjectsDirectory));
                     Console.WriteLine($"{s.ServiceName} version: {version}");
                 }); 
             });
@@ -169,19 +194,19 @@ namespace _build
             .Description("Build docker image(s)")
             .Executes(() =>
             {
-                ServiceAccessUtils.Execute(ChosenServiceDefinitions, service =>
+                ServiceAccessUtils.Execute(ChosenDockerServices, service =>
                 {
                     Console.WriteLine("Building " + service.ServiceName);
                     ISet<string> tags = new HashSet<string>();
-                    tags.Add(VersionUtils.GetVersion(service.ServiceFolder(ProjectsDirectory)));
+                    tags.Add(VersionUtils.GetVersion(service.FolderPath(ProjectsDirectory)));
                     if (DockerBuildLatest)
                     {
                         tags.Add("latest");
                     }
 
                     DockerTasks.DockerBuild(s => s
-                        .SetFile(service.ServiceDockerFile(ProjectsDirectory))
-                        .SetPath(service.ServiceFolder(ProjectsDirectory))
+                        .SetFile(service.DockerFileAbsolutePath(ProjectsDirectory))
+                        .SetPath(service.FolderPath(ProjectsDirectory))
                         .EnableNoCache()
                         .SetTag(tags.Select(tag => $"{service.DockerImageName}:{tag}"))
                     );
@@ -211,11 +236,11 @@ namespace _build
             .Description("Push docker image without logging in")
             .Executes(() =>
             {
-                ServiceAccessUtils.Execute(ChosenServiceDefinitions, service =>
+                ServiceAccessUtils.Execute(ChosenDockerServices, service =>
                 {
                     DockerTasks.DockerPush(s => s
                         .SetName($"{service.DockerImageName}:" +
-                                 $"{VersionUtils.GetVersion(service.ServiceFolder(ProjectsDirectory))}"));
+                                 $"{VersionUtils.GetVersion(service.FolderPath(ProjectsDirectory))}"));
                     if (DockerPushLatest)
                     {
                         DockerTasks.DockerPush(s => s
