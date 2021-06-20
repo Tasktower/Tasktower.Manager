@@ -30,6 +30,13 @@ services:
       - tasktower-sql-server-db
     networks:
       - tasktower
+  tasktower-ui-service:
+    container_name: "tasktower-ui-service"
+    image: taskmaster39/tasktower-ui-service:latest
+    ports:
+      - "8081:80"
+    networks:
+      - tasktower
   tasktower-project-service:
     container_name: "tasktower-project-service"
     image: taskmaster39/tasktower-project-service:latest
@@ -45,11 +52,17 @@ services:
       - tasktower-project-service-migration
     networks:
       - tasktower
-  tasktower-ui-service:
-    container_name: "tasktower-ui-service"
-    image: taskmaster39/tasktower-ui-service:latest
+  tasktower-user-service:
+    container_name: "tasktower-user-service"
+    image: taskmaster39/tasktower-user-service:latest
     ports:
-      - "8081:80"
+      - "8083:80"
+    env_file:
+      - ./env/auth-openid.env
+    environment:
+      - ASPNETCORE_ENVIRONMENT=development
+    depends_on:
+      - tasktower-sql-server-db
     networks:
       - tasktower
   tasktower-webapp-gateway:
