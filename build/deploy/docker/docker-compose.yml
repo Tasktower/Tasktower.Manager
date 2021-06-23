@@ -10,22 +10,23 @@ services:
       - SA_PASSWORD=P@ssword123
     networks:
       - tasktower
-#  tasktower-redis:
-#    container_name: "tasktower-redis"
-#    image: bitnami/redis:6.0.9
-#    ports:
-#      - "6379:6379"
-#    environment:
-#      - REDIS_PASSWORD=password123
-#    networks:
-#      - tasktower
+  tasktower-redis:
+    container_name: "tasktower-redis"
+    image: bitnami/redis:6.0.9
+    ports:
+      - "6379:6379"
+    environment:
+      - REDIS_PASSWORD=password123
+    networks:
+      - tasktower
   tasktower-project-service-migration:
     container_name: "tasktower-project-service-migration"
     image: taskmaster39/tasktower-migrator:latest
     environment:
-      - CONNECTION_STRING= Data Source=tasktower-sql-server-db;Server=tasktower-sql-server-db;User ID=sa;Password=P@ssword123;Database=project;
-      - SERVICE=Board
-      - SWITCH_ARGS= -d
+      - ASPNETCORE_ENVIRONMENT=Development
+      - Migration__ServiceName=Project
+      - Migration__AddData=true
+      - ConnectionStrings__SQLServer=Data Source=tasktower-sql-server-db;Server=tasktower-sql-server-db;User ID=sa;Password=P@ssword123;Database=project;
     depends_on:
       - tasktower-sql-server-db
     networks:
@@ -45,8 +46,8 @@ services:
     env_file:
       - ./env/auth-openid.env
     environment:
-      - ASPNETCORE_ENVIRONMENT=development
-      - ConnectionStrings__SQLServerBoardDB=Data Source=tasktower-sql-server-db;Server=tasktower-sql-server-db;User ID=sa;Password=P@ssword123;Database=project;
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__SQLServer=Data Source=tasktower-sql-server-db;Server=tasktower-sql-server-db;User ID=sa;Password=P@ssword123;Database=project;
     depends_on:
       - tasktower-sql-server-db
       - tasktower-project-service-migration
@@ -60,7 +61,8 @@ services:
     env_file:
       - ./env/auth-openid.env
     environment:
-      - ASPNETCORE_ENVIRONMENT=development
+      - ASPNETCORE_ENVIRONMENT=Development
+      - Auth0Api__Domain=dev-cl8od7hx.us.auth0.com
     depends_on:
       - tasktower-sql-server-db
     networks:
