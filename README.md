@@ -69,6 +69,21 @@ nuke GitRun --git-command 'commit -m \\"hello commit message\\"' --service-name 
 
 Next is to run your docker images.
 
+Before setting up your docker compose, go to build/deploy/docker/env and copy all the 
+files in the format *.env.sample into the format *.env
+
+These are your environment variables that will contain secret data that should not be in a git repository.
+For example client secrets for oath2, you need to contact fellow project developers to assist.
+
+Then go to build/deploy/docker/generate and then run: 
+```bash
+sh generate.sh
+```
+This will generate extra files needed for your docker images to run.
+
+_Note: In the future we will use template files and use generate.sh to generate docker-compose files as opposed 
+to the current setup. This will be needed for kubernetes deployment in the future._
+
 If you just wish to run your docker image, do the following:
 ```bash
 cd build/deploy/docker
