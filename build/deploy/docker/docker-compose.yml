@@ -26,6 +26,7 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
       - Migration__ServiceName=Project
       - Migration__AddData=true
+      - Migration__Reset=true
       - ConnectionStrings__SQLServer=Data Source=tasktower-sql-server-db;Server=tasktower-sql-server-db;User ID=sa;Password=P@ssword123;Database=project;
     depends_on:
       - tasktower-sql-server-db
