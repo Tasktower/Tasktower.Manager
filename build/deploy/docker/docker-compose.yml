@@ -62,6 +62,10 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Staging
       - ConnectionStrings__SQLServer=Data Source=tasktower-sql-server-db;Server=tasktower-sql-server-db;User ID=sa;Password=P@ssword123;Database=project;
+      - RabbitMq__HostName=tasktower-rabbitmq
+      - RabbitMq__Port=5672
+      - RabbitMq__UserName=admin
+      - RabbitMq__Password=admin
     depends_on:
       - tasktower-sql-server-db
       - tasktower-project-service-migration
@@ -77,6 +81,10 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Staging
       - Auth0Api__Domain=dev-cl8od7hx.us.auth0.com
+      - RabbitMq__HostName=tasktower-rabbitmq
+      - RabbitMq__Port=5672
+      - RabbitMq__UserName=admin
+      - RabbitMq__Password=admin
     depends_on:
       - tasktower-sql-server-db
     networks:
